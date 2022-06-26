@@ -51,7 +51,7 @@ const sectionStyle = {
   scrollSnapAlign: 'start',
   textAlign: 'center',
   position: 'relative',
-  backgroundColor: 'gray',
+  // backgroundColor: 'gray',
 };
 
 const Section = ({ id, children }) => {
