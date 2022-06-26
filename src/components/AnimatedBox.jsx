@@ -38,7 +38,12 @@ const Box = ({ num }) => {
 };
 
 const sectionVariant = {
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.75 } },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    backgroundColor: '#03d3fc',
+    transition: { duration: 0.75 },
+  },
   hidden: { opacity: 0, scale: 0 },
 };
 
@@ -58,20 +63,20 @@ const Section = ({ id, children }) => {
   const control = useAnimation();
   const [ref, inView] = useInView();
 
-  // useEffect(() => {
-  //   if (inView) {
-  //     control.start('visible');
-  //   } else {
-  //     control.start('hidden');
-  //   }
-  // }, [control, inView]);
+  useEffect(() => {
+    if (inView) {
+      control.start('visible');
+    } else {
+      control.start('hidden');
+    }
+  }, [control, inView]);
 
   return (
     <motion.section
       className="section"
       ref={ref}
-      // variants={sectionVariant}
-      // initial="hidden"
+      variants={sectionVariant}
+      initial="hidden"
       animate={control}
       style={sectionStyle}
       id={id}

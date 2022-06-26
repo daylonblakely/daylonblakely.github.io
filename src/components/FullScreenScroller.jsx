@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation, animate, useMotionValue } from 'framer-motion';
+import { motion, animate, useMotionValue } from 'framer-motion';
 
 const UP = 'up';
 const DOWN = 'down';
@@ -24,7 +24,6 @@ const KEY_CODES = {
 const SCROLL_DURATION = 2; //seconds
 
 export default function FullScreenScroller({ children }) {
-  const control = useAnimation();
   const y = useMotionValue(0);
   const section = useRef(1);
 
@@ -36,7 +35,6 @@ export default function FullScreenScroller({ children }) {
   };
 
   const preventDefaultForScrollKeys = (e) => {
-    const keys = { 32: 1, 37: 1, 38: 1, 39: 1, 40: 1 };
     if (KEY_CODES[e.keyCode]) {
       preventDefault(e);
       return false;
@@ -116,6 +114,7 @@ export default function FullScreenScroller({ children }) {
       const top = document.getElementById(
         `section${scrollToSection}`
       ).offsetTop;
+
       animate(y, -top, {
         type: 'spring',
         duration: SCROLL_DURATION,
@@ -147,16 +146,10 @@ export default function FullScreenScroller({ children }) {
 
   return (
     <motion.div
-      id="test"
       style={{
-        // scrollSnapType: 'y mandatory',
-        // maxHeight: '100vh',
-        overflowY: 'auto',
-        // overflowY: 'hidden',
-        scrollBehavior: 'smooth',
+        // TODO hide scrollbar
         y,
       }}
-      animate={control}
     >
       {children}
     </motion.div>
