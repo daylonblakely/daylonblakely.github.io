@@ -83,14 +83,7 @@ const Section = ({ id, children }) => {
 
 export default function AnimatedBox() {
   return (
-    <div
-      style={{
-        scrollSnapType: 'y mandatory',
-        maxHeight: '100vh',
-        overflowY: 'scroll',
-        scrollBehavior: 'smooth',
-      }}
-    >
+    <>
       <Section id="section1">
         <Box num={1} />
         <Box num={2} />
@@ -103,6 +96,6 @@ export default function AnimatedBox() {
         <Box num={3} />
         <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
       </Section>
-    </div>
+    </>
   );
 }

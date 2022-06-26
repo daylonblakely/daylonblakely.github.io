@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 // import ProTip from './ProTip';
 import AnimatedBox from './components/AnimatedBox';
+import FullScreenScroller from './components/FullScreenScroller';
 
 function Copyright() {
   return (
@@ -20,5 +21,9 @@ function Copyright() {
 }
 
 export default function App() {
-  return <AnimatedBox />;
+  return (
+    <FullScreenScroller>
+      <AnimatedBox />
+    </FullScreenScroller>
+  );
 }
