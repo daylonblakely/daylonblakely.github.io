@@ -147,7 +147,6 @@ export default function FullScreenScroller({ children }) {
   return (
     <motion.div
       style={{
-        // TODO hide scrollbar
         y,
       }}
     >

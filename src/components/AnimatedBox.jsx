@@ -96,6 +96,14 @@ export default function AnimatedBox() {
         <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
       </Section>
       <Section id="section2">
+        <h1>{'section 2'}</h1>
+        <Box num={1} />
+        <Box num={2} />
+        <Box num={3} />
+        <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
+      </Section>
+      <Section id="section3">
+        <h1>{'section 3'}</h1>
         <Box num={1} />
         <Box num={2} />
         <Box num={3} />
