@@ -25,7 +25,7 @@ const SCROLL_DURATION = 2; //seconds
 
 export default function FullScreenScroller({ children }) {
   const y = useMotionValue(0);
-  const section = useRef(1);
+  const section = useRef();
 
   const wheelEvent =
     'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
@@ -97,42 +97,50 @@ export default function FullScreenScroller({ children }) {
     return KEY_CODES[e.keyCode];
   };
 
+  const scrollToElement = (id) => {
+    const top = document.getElementById(id).offsetTop;
+
+    animate(y, -top, {
+      type: 'spring',
+      duration: SCROLL_DURATION,
+      //   stiffness: 2000,
+      onComplete: (v) => {
+        section.current = id;
+        window.location.hash = `#${section.current}`;
+        enableCustomScroll();
+      },
+    });
+  };
+
   const handleScroll = (e) => {
     disableCustomScroll();
     const scrollDirection = getScrollDirection(e);
 
+    const sectionIds = [...document.getElementsByClassName('section')].map(
+      (s) => s.id
+    );
+
     const scrollToSection =
       scrollDirection === TOP
-        ? 1
+        ? sectionIds[0]
         : scrollDirection === END
-        ? 2 //TODO go to bottom on end
+        ? sectionIds[sectionIds.length - 1]
         : scrollDirection === DOWN
-        ? section.current + 1
-        : section.current - 1;
+        ? sectionIds[sectionIds.indexOf(section.current) + 1]
+        : sectionIds[sectionIds.indexOf(section.current) - 1];
 
     try {
-      const top = document.getElementById(
-        `section${scrollToSection}`
-      ).offsetTop;
-
-      animate(y, -top, {
-        type: 'spring',
-        duration: SCROLL_DURATION,
-        //   stiffness: 2000,
-        onComplete: (v) => {
-          section.current = scrollToSection;
-          window.location.hash = `#section${section.current}`;
-          enableCustomScroll();
-        },
-      });
+      scrollToElement(scrollToSection);
     } catch (error) {
+      console.log(error);
       enableCustomScroll();
     }
   };
 
   useEffect(
     () => {
-      window.location.hash = `#section${section.current}`;
+      section.current = window.location.hash.slice(1);
+      // window.location.hash = `#section${section.current}`;
       disableDefaultScroll();
       enableCustomScroll();
       return () => {
