@@ -98,7 +98,16 @@ export default function FullScreenScroller({ children }) {
   };
 
   const scrollToElement = (id) => {
-    const top = document.getElementById(id).offsetTop;
+    disableCustomScroll();
+    const element = document.querySelector(`[data-anchor=${id}`);
+
+    if (!element) {
+      enableCustomScroll();
+      return;
+    }
+
+    const top = element.offsetTop;
+    window.location.hash = `#${id}`; //scroll using the data-anchor so this line doesnt jump to element by id
 
     animate(y, -top, {
       type: 'spring',
@@ -106,18 +115,17 @@ export default function FullScreenScroller({ children }) {
       //   stiffness: 2000,
       onComplete: (v) => {
         section.current = id;
-        window.location.hash = `#${section.current}`;
+
         enableCustomScroll();
       },
     });
   };
 
   const handleScroll = (e) => {
-    disableCustomScroll();
     const scrollDirection = getScrollDirection(e);
 
     const sectionIds = [...document.getElementsByClassName('section')].map(
-      (s) => s.id
+      (s) => s.dataset.anchor
     );
 
     const scrollToSection =
@@ -129,20 +137,14 @@ export default function FullScreenScroller({ children }) {
         ? sectionIds[sectionIds.indexOf(section.current) + 1]
         : sectionIds[sectionIds.indexOf(section.current) - 1];
 
-    try {
-      scrollToElement(scrollToSection);
-    } catch (error) {
-      console.log(error);
-      enableCustomScroll();
-    }
+    scrollToElement(scrollToSection);
   };
 
   useEffect(
     () => {
       section.current = window.location.hash.slice(1);
-      // window.location.hash = `#section${section.current}`;
       disableDefaultScroll();
-      enableCustomScroll();
+      scrollToElement(section.current);
       return () => {
         disableCustomScroll();
         enableDefaultScroll();

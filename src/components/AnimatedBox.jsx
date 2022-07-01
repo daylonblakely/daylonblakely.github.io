@@ -79,7 +79,8 @@ const Section = ({ id, children }) => {
       initial="hidden"
       animate={control}
       style={sectionStyle}
-      id={id}
+      // id={id}
+      data-anchor={id}
     >
       {children}
     </motion.section>
