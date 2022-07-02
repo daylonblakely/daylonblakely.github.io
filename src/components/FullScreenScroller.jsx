@@ -135,7 +135,9 @@ export default function FullScreenScroller({ children }) {
         ? sectionIds[sectionIds.length - 1]
         : scrollDirection === DOWN
         ? sectionIds[sectionIds.indexOf(section.current) + 1]
-        : sectionIds[sectionIds.indexOf(section.current) - 1];
+        : scrollDirection === UP
+        ? sectionIds[sectionIds.indexOf(section.current) - 1]
+        : null;
 
     scrollToElement(scrollToSection);
   };
