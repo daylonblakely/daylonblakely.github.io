@@ -122,6 +122,7 @@ export default function FullScreenScroller({ children }) {
   };
 
   const handleScroll = (e) => {
+    console.log(e);
     const scrollDirection = getScrollDirection(e);
 
     const sectionIds = [...document.getElementsByClassName('section')].map(
@@ -146,7 +147,12 @@ export default function FullScreenScroller({ children }) {
     () => {
       section.current = window.location.hash.slice(1);
       disableDefaultScroll();
-      scrollToElement(section.current);
+      if (section.current) {
+        scrollToElement(section.current);
+      } else {
+        enableCustomScroll();
+      }
+
       return () => {
         disableCustomScroll();
         enableDefaultScroll();
