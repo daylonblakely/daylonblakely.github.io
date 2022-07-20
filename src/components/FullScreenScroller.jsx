@@ -103,7 +103,7 @@ export default function FullScreenScroller({ children }) {
 
     if (!element) {
       enableCustomScroll();
-      return;
+      return false;
     }
 
     const top = element.offsetTop;
