@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { motion, animate, useMotionValue } from 'framer-motion';
 
 const UP = 'up';
@@ -26,7 +26,11 @@ const SCROLL_DURATION = 2; //seconds
 export default function FullScreenScroller({ children }) {
   const y = useMotionValue(0);
   const section = useRef();
-
+  const [sectionIds, setSectionsIds] = useState(
+    children.map((child) => {
+      return child.props.id;
+    })
+  );
   const wheelEvent =
     'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 
