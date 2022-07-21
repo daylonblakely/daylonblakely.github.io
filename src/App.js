@@ -7,6 +7,7 @@ import Link from '@mui/material/Link';
 import AnimatedBox from './components/AnimatedBox';
 import FullScreenScroller from './components/FullScreenScroller';
 import FullScreenSection from './components/FullScreenSection';
+import FullScreenScrollerParalax from './components/FullScreenScrollerParalax';
 
 function Copyright() {
   return (
@@ -23,7 +24,7 @@ function Copyright() {
 
 export default function App() {
   return (
-    <FullScreenScroller>
+    <FullScreenScrollerParalax>
       <FullScreenSection id="section1">
         <AnimatedBox />
         <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
@@ -36,6 +37,6 @@ export default function App() {
         <AnimatedBox />
         <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
       </FullScreenSection>
-    </FullScreenScroller>
+    </FullScreenScrollerParalax>
   );
 }
