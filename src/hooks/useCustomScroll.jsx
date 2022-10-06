@@ -72,6 +72,7 @@ export const useCustomScroll = (sectionIds) => {
     window.removeEventListener(wheelEvent, handleScroll, options); // modern desktop
     window.removeEventListener('touchmove', handleScroll, options); // mobile
     window.removeEventListener('keydown', handleScroll, options);
+    window.removeEventListener('resize', handleResize, options);
   };
 
   const enableCustomScroll = () => {
@@ -83,6 +84,7 @@ export const useCustomScroll = (sectionIds) => {
     window.addEventListener(wheelEvent, handleScroll, options); // modern desktop
     window.addEventListener('touchmove', handleScroll, options); // mobile
     window.addEventListener('keydown', handleScroll, options);
+    window.addEventListener('resize', handleResize, options);
   };
 
   const getScrollDirection = (e) => {
@@ -114,7 +116,9 @@ export const useCustomScroll = (sectionIds) => {
       duration: SCROLL_DURATION,
       //   stiffness: 2000,
       onComplete: (v) => {
-        enableCustomScroll();
+        setTimeout(() => {
+          enableCustomScroll();
+        }, 500); // helps prevent leftover scrolls from triggering handleScroll
       },
     });
   };
@@ -138,6 +142,13 @@ export const useCustomScroll = (sectionIds) => {
     else enableCustomScroll();
   };
 
+  const handleResize = (e) => {
+    const element = document.querySelector(`[data-anchor=${currentSection}`);
+    const top = element.offsetTop;
+    animate(y, -top);
+  };
+  // disable default scroll and enable custom
+  // reverse on cleanup
   useEffect(() => {
     disableDefaultScroll();
     enableCustomScroll();
@@ -148,9 +159,7 @@ export const useCustomScroll = (sectionIds) => {
     };
   }, []);
 
-  useEffect(() => {
-    scrollToElement(currentSection);
-  }, [currentSection]);
+  scrollToElement(currentSection);
 
-  return [y];
+  return [y, currentSection];
 };
