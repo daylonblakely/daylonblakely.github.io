@@ -157,6 +157,7 @@ export const useCustomScroll = (sectionIds) => {
       disableCustomScroll();
       enableDefaultScroll();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   scrollToElement(currentSection);
