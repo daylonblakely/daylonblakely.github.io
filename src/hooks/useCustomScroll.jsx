@@ -72,7 +72,7 @@ export const useCustomScroll = (sectionIds) => {
     window.removeEventListener(wheelEvent, handleScroll, options); // modern desktop
     window.removeEventListener('touchmove', handleScroll, options); // mobile
     window.removeEventListener('keydown', handleScroll, options);
-    window.removeEventListener('resize', handleResize, options);
+    window.removeEventListener('resize', handleResize);
   };
 
   const enableCustomScroll = () => {
@@ -84,7 +84,7 @@ export const useCustomScroll = (sectionIds) => {
     window.addEventListener(wheelEvent, handleScroll, options); // modern desktop
     window.addEventListener('touchmove', handleScroll, options); // mobile
     window.addEventListener('keydown', handleScroll, options);
-    window.addEventListener('resize', handleResize, options);
+    window.addEventListener('resize', handleResize);
   };
 
   const getScrollDirection = (e) => {
@@ -142,7 +142,7 @@ export const useCustomScroll = (sectionIds) => {
     else enableCustomScroll();
   };
 
-  const handleResize = (e) => {
+  const handleResize = () => {
     const element = document.querySelector(`[data-anchor=${currentSection}`);
     const top = element.offsetTop;
     animate(y, -top);
