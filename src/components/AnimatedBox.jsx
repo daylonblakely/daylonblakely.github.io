@@ -1,5 +1,5 @@
 import { motion, useAnimation } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useInView } from 'react-intersection-observer'; //todo uninstall this
 import { useEffect } from 'react';
 
 const boxVariant = {
