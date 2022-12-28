@@ -14,7 +14,7 @@ const sectionStyle = {
   display: 'flex',
   flexDirection: 'column',
   padding: '1rem',
-  height: '100vh',
+  // height: '100px',
   scrollSnapAlign: 'start',
   textAlign: 'center',
   position: 'relative',

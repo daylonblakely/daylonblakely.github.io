@@ -1,4 +1,5 @@
 import * as React from 'react';
+import NavBar from './components/NavBar';
 import AnimatedBox from './components/AnimatedBox';
 import FullScreenScroller from './components/FullScreenScroller';
 import FullScreenSection from './components/FullScreenSection';
@@ -16,6 +17,7 @@ const appStyle = {
 export default function App() {
   return (
     <div style={appStyle}>
+      <NavBar />
       <FullScreenScroller>
         <FullScreenSection id="section1">
           <AnimatedBox />

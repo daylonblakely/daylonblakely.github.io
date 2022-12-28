@@ -9,13 +9,16 @@ const FullScreenScroller = ({ children }) => {
   console.log(currentSection);
 
   return (
-    <motion.div
-      style={{
-        y,
-      }}
-    >
-      {children}
-    </motion.div>
+    <div style={{ overflow: 'hidden' }}>
+      <motion.div
+        style={{
+          position: 'relative',
+          y,
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 };
 
