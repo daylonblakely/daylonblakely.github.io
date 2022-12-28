@@ -19,7 +19,7 @@ const NavBarContainer = styled.nav`
   }
 `;
 
-const NavBar = () => {
+const NavBar = ({ sections }) => {
   // Use a ref to store the nav bar element
   const navRef = useRef(null);
   // Use another ref to store the top position of the nav bar
@@ -50,9 +50,13 @@ const NavBar = () => {
 
   return (
     <NavBarContainer ref={navRef}>
-      <a href="#section2">Section 2 Below</a>
-      <a href="#section2">Section 2 Below</a>
-      <a href="#section2">Section 2 Below</a>
+      {sections.map((section, i) => {
+        return (
+          <a href={`#${section.id}`} key={i}>
+            section
+          </a>
+        );
+      })}
     </NavBarContainer>
   );
 };

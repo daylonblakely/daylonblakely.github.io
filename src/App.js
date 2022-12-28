@@ -14,23 +14,20 @@ const appStyle = {
   backgroundImage: `url(${Background})`,
 };
 
+const sections = [{ id: 'section1' }, { id: 'section2' }, { id: 'section3' }];
+
 export default function App() {
   return (
     <div style={appStyle}>
-      <NavBar />
+      <NavBar sections={sections} />
       <FullScreenScroller>
-        <FullScreenSection id="section1">
-          <AnimatedBox />
-          <a href="#section2">Click Me to Smooth Scroll to Section 2 Below</a>
-        </FullScreenSection>
-        <FullScreenSection id="section2">
-          <AnimatedBox />
-          <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
-        </FullScreenSection>
-        <FullScreenSection id="section3">
-          <AnimatedBox />
-          <a href="#section1">Click Me to Smooth Scroll to Section 1 Above</a>
-        </FullScreenSection>
+        {sections.map((section, i) => {
+          return (
+            <FullScreenSection id={section.id} key={i}>
+              <AnimatedBox />
+            </FullScreenSection>
+          );
+        })}
       </FullScreenScroller>
     </div>
   );
