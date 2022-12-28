@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { animate, useMotionValue } from 'framer-motion';
 
 const UP = 'up';
@@ -25,7 +25,15 @@ const SCROLL_DURATION = 2; //seconds
 
 export const useCustomScroll = (sectionIds) => {
   const y = useMotionValue(0);
-  const [currentSection, setCurrentSection] = useState(sectionIds[0]);
+
+  // use state and ref to get current section in event handlers
+  // https://medium.com/geographit/accessing-react-state-in-event-listeners-with-usestate-and-useref-hooks-8cceee73c559
+  const [currentSection, _setCurrentSection] = useState(sectionIds[0]);
+  const currentSectionRef = useRef(currentSection);
+  const setCurrentSection = (section) => {
+    currentSectionRef.current = section;
+    _setCurrentSection(section);
+  };
 
   const preventDefault = (e) => {
     e.preventDefault();
@@ -109,7 +117,6 @@ export const useCustomScroll = (sectionIds) => {
     }
 
     const top = element.offsetTop;
-    window.location.hash = `#${id}`; //scroll using the data-anchor so this line doesnt jump to element by id
 
     animate(y, -top, {
       type: 'spring',
@@ -133,34 +140,59 @@ export const useCustomScroll = (sectionIds) => {
         : scrollDirection === END
         ? sectionIds[sectionIds.length - 1]
         : scrollDirection === DOWN
-        ? sectionIds[sectionIds.indexOf(currentSection) + 1]
+        ? sectionIds[sectionIds.indexOf(currentSectionRef.current) + 1]
         : scrollDirection === UP
-        ? sectionIds[sectionIds.indexOf(currentSection) - 1]
+        ? sectionIds[sectionIds.indexOf(currentSectionRef.current) - 1]
         : null;
 
+    // update state and ref to current section
     if (scrollToSection) setCurrentSection(scrollToSection);
     else enableCustomScroll();
   };
 
   const handleResize = () => {
-    const element = document.querySelector(`[data-anchor=${currentSection}`);
+    const element = document.querySelector(
+      `[data-anchor=${currentSectionRef.current}`
+    );
     const top = element.offsetTop;
     animate(y, -top);
   };
+
+  // a url hash change is what triggers the scroll animation
+  const handleHashChange = (e) => {
+    e.preventDefault();
+
+    const id = window.location.hash.replace('#', '');
+
+    // return if hash is invalid
+    if (!sectionIds.includes(id)) return;
+
+    scrollToElement(id);
+
+    // update the state if the hash changes from something other than a scroll (link clicked)
+    if (id !== currentSectionRef.current) {
+      setCurrentSection(id);
+    }
+  };
+
   // disable default scroll and enable custom
   // reverse on cleanup
   useEffect(() => {
     disableDefaultScroll();
     enableCustomScroll();
+    window.addEventListener('hashchange', handleHashChange);
 
     return () => {
       disableCustomScroll();
       enableDefaultScroll();
+      window.removeEventListener('hashchange', handleHashChange);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  scrollToElement(currentSection);
+  // update the url hash on render
+  // this triggers the scroll
+  window.location.hash = `#${currentSectionRef.current}`; //scroll using the data-anchor so this line doesnt jump to element by id
 
   return [y, currentSection];
 };
