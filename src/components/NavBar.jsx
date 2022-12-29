@@ -1,25 +1,27 @@
-import React, { useEffect, useRef } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useContext } from 'react';
+import { styled } from '@mui/system';
+import ColorModeContext from '../context/ColorModeContext';
 
-const NavBarContainer = styled.nav`
-  /* Add your styles for the nav bar here */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50px;
+const NavBarContainer = styled('nav')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '50px',
 
-  background-color: #0f111c;
+  backgroundColor: theme.palette.primary.main,
 
-  &.sticky {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-  }
-`;
+  '&.sticky': {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+  },
+}));
 
 const NavBar = ({ sections }) => {
+  const colorMode = useContext(ColorModeContext);
+
   // Use a ref to store the nav bar element
   const navRef = useRef(null);
   // Use another ref to store the top position of the nav bar
@@ -57,6 +59,7 @@ const NavBar = ({ sections }) => {
           </a>
         );
       })}
+      <button onClick={colorMode.toggleColorMode}>toggle color</button>
     </NavBarContainer>
   );
 };
