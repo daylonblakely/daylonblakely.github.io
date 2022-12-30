@@ -8,15 +8,13 @@ import NavBar from './components/NavBar';
 import AnimatedBox from './components/AnimatedBox';
 import FullScreenScroller from './components/FullScreenScroller';
 import FullScreenSection from './components/FullScreenSection';
-// import Background from './assets/background.jpg';
+import { ReactComponent as Test } from './assets/test.svg';
 
-const AppContainer = styled('div')(({ theme }) => ({
-  // width: '100%',
-  // height: '100vh',
-  // backgroundPosition: 'center',
-  // backgroundSize: 'cover',
-  // backgroundRepeat: 'no-repeat',
-  // backgroundImage: `url(${Background})`,
+const AppBackground = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  width: '100%',
+  height: '100vh',
+  zIndex: -999,
   background: theme.palette.background.default,
 }));
 
@@ -36,18 +34,20 @@ export default function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
-        <AppContainer>
-          <NavBar sections={sections} />
-          <FullScreenScroller>
-            {sections.map((section, i) => {
-              return (
-                <FullScreenSection id={section.id} key={i}>
-                  <AnimatedBox />
-                </FullScreenSection>
-              );
-            })}
-          </FullScreenScroller>
-        </AppContainer>
+        <AppBackground>
+          <Test width="100%" height="100%" preserveAspectRatio="none" />
+        </AppBackground>
+
+        <NavBar sections={sections} />
+        <FullScreenScroller>
+          {sections.map((section, i) => {
+            return (
+              <FullScreenSection id={section.id} key={i}>
+                <AnimatedBox />
+              </FullScreenSection>
+            );
+          })}
+        </FullScreenScroller>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
