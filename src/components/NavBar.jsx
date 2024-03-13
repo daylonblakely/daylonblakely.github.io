@@ -3,6 +3,7 @@ import { styled } from '@mui/system';
 import ColorModeContext from '../context/ColorModeContext';
 
 const NavBarContainer = styled('nav')(({ theme }) => ({
+  position: 'relative',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

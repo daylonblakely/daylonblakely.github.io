@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { styled } from '@mui/system';
 
 import ColorModeContext from './context/ColorModeContext';
 import { lightTheme, darkTheme } from './theme';
@@ -9,16 +8,8 @@ import AnimatedBox from './components/AnimatedBox';
 import FullScreenScroller from './components/FullScreenScroller';
 import FullScreenSection from './components/FullScreenSection';
 // import Background from './assets/background.jpg';
-
-const AppContainer = styled('div')(({ theme }) => ({
-  // width: '100%',
-  // height: '100vh',
-  // backgroundPosition: 'center',
-  // backgroundSize: 'cover',
-  // backgroundRepeat: 'no-repeat',
-  // backgroundImage: `url(${Background})`,
-  background: theme.palette.background.default,
-}));
+// import Background from './assets/me.jpg';
+import Background from './components/Background';
 
 const sections = [{ id: 'section1' }, { id: 'section2' }, { id: 'section3' }];
 
@@ -36,18 +27,17 @@ export default function App() {
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
-        <AppContainer>
-          <NavBar sections={sections} />
-          <FullScreenScroller>
-            {sections.map((section, i) => {
-              return (
-                <FullScreenSection id={section.id} key={i}>
-                  <AnimatedBox />
-                </FullScreenSection>
-              );
-            })}
-          </FullScreenScroller>
-        </AppContainer>
+        <Background />
+        <NavBar sections={sections} />
+        <FullScreenScroller>
+          {sections.map((section, i) => {
+            return (
+              <FullScreenSection id={section.id} key={i}>
+                <AnimatedBox />
+              </FullScreenSection>
+            );
+          })}
+        </FullScreenScroller>
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
