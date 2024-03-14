@@ -7,11 +7,14 @@ import NavBar from './components/NavBar';
 import AnimatedBox from './components/AnimatedBox';
 import FullScreenScroller from './components/FullScreenScroller';
 import FullScreenSection from './components/FullScreenSection';
-// import Background from './assets/background.jpg';
-// import Background from './assets/me.jpg';
 import Background from './components/Background';
+import HomePage from './views/HomePage';
 
-const sections = [{ id: 'section1' }, { id: 'section2' }, { id: 'section3' }];
+const sections = [
+  { id: 'section1', element: <HomePage /> },
+  { id: 'section2', element: <AnimatedBox /> },
+  { id: 'section3', element: <AnimatedBox /> },
+];
 
 export default function App() {
   const [mode, setMode] = React.useState('light');
@@ -33,7 +36,7 @@ export default function App() {
           {sections.map((section, i) => {
             return (
               <FullScreenSection id={section.id} key={i}>
-                <AnimatedBox />
+                {section.element}
               </FullScreenSection>
             );
           })}
