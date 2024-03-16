@@ -5,47 +5,32 @@ import Me from '../assets/me.jpg';
 const HomeContainer = styled('div')(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'space-around',
+  justifyContent: 'center',
+  alignItems: 'center',
   height: '100%',
+  padding: '2rem 1rem',
 
-  [theme.breakpoints.up('sm')]: {
+  [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+    padding: '5rem 1rem',
   },
-  //   [theme.breakpoints.up("md")]: {
-  //     width: 350
-  //   },
-  //   [theme.breakpoints.up("lg")]: {
-  //     width: 450
-  //   },
-  //   [theme.breakpoints.up("xl")]: {
-  //     width: 550
-  //   }
 }));
 
 const ContentContainer = styled('div')(({ theme }) => ({
   padding: '20px',
-  // flex: 1,
 }));
 
 const ImageContainer = styled('div')(({ theme }) => ({
-  textAlign: 'center',
-  // flex: 1,
-  //   width: 400,
-  //   maxWidth: '100%',
+  maxWidth: '700px',
+  width: '100%',
+  [theme.breakpoints.down('sm')]: {
+    minWidth: '300px',
+  },
 }));
 
-const MeImage = () => (
-  <img
-    src={Me}
-    width="100%"
-    // width={800}
-    height="auto"
-    style={{ minWidth: 350 }}
-    alt="me!"
-  />
-);
+const MeImage = () => <img src={Me} width="100%" height="auto" alt="me!" />;
 
 const HomePage = () => {
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });

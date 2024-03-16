@@ -31,7 +31,7 @@ export default function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <Background />
-        <NavBar sections={sections} />
+        {/* <NavBar sections={sections} /> */}
         <FullScreenScroller>
           {sections.map((section, i) => {
             return (
