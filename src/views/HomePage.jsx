@@ -10,20 +10,15 @@ const HomeContainer = styled('div')(({ theme }) => ({
   alignItems: 'center',
   gap: '20px',
   height: '100%',
-  padding: '2rem 1rem',
 
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    padding: '5rem 1rem',
   },
 }));
 
 const ContentContainer = styled('div')(({ theme }) => ({
-  // padding: '20px',
-  // height: '100%',
-  // backgroundColor: 'red',
   textAlign: 'left',
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',

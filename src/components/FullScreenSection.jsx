@@ -18,6 +18,8 @@ const sectionStyle = {
   scrollSnapAlign: 'start',
   textAlign: 'center',
   position: 'relative',
+  border: '3px',
+  boxSizing: 'border-box',
 };
 
 const FullScreenSection = ({ id, children }) => {
