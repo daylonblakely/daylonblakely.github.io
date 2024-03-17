@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { styled } from '@mui/system';
+import { Button } from '@mui/material';
 import Me from '../assets/me.jpg';
 
 const HomeContainer = styled('div')(({ theme }) => ({
@@ -7,6 +8,7 @@ const HomeContainer = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
+  gap: '20px',
   height: '100%',
   padding: '2rem 1rem',
 
@@ -19,14 +21,40 @@ const HomeContainer = styled('div')(({ theme }) => ({
 }));
 
 const ContentContainer = styled('div')(({ theme }) => ({
-  padding: '20px',
+  // padding: '20px',
+  // height: '100%',
+  // backgroundColor: 'red',
+  textAlign: 'left',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+  },
 }));
 
 const ImageContainer = styled('div')(({ theme }) => ({
   maxWidth: '700px',
+  minWidth: '500px',
   width: '100%',
-  [theme.breakpoints.down('sm')]: {
+  [theme.breakpoints.down('md')]: {
     minWidth: '300px',
+  },
+}));
+
+const Title = styled('h1')(({ theme }) => ({
+  fontSize: '5vw',
+  marginBottom: '2px',
+  whiteSpace: 'nowrap',
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '3rem',
+  },
+}));
+
+const IntroText = styled('p')(({ theme }) => ({
+  fontSize: '2.5vw',
+  marginTop: 0,
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '1.2rem',
   },
 }));
 
@@ -47,10 +75,9 @@ const HomePage = () => {
   return (
     <HomeContainer>
       <ContentContainer>
-        <h1>Welcome to My Portfolio</h1>
-        <p>
-          This is the place where I showcase my projects and share my thoughts.
-        </p>
+        <Title>Daylon Blakely</Title>
+        <IntroText>Software Engineer</IntroText>
+        <Button variant="contained">View Portfolio</Button>
       </ContentContainer>
       <ImageContainer>
         <MeImage ref={imageRef} />
