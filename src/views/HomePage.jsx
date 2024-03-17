@@ -10,6 +10,7 @@ const HomeContainer = styled('div')(({ theme }) => ({
   alignItems: 'center',
   gap: '20px',
   height: '100%',
+  padding: '1.5rem',
 
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
@@ -37,6 +38,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
 const Title = styled('h1')(({ theme }) => ({
   fontSize: '5vw',
   marginBottom: '2px',
+  marginTop: 0,
   whiteSpace: 'nowrap',
 
   [theme.breakpoints.down('md')]: {
