@@ -11,7 +11,7 @@ import Background from './components/Background';
 import HomePage from './views/HomePage';
 
 const sections = [
-  { id: 'section1', element: <HomePage /> },
+  // { id: 'section1', element: <HomePage /> },
   { id: 'section2', element: <AnimatedBox /> },
   { id: 'section3', element: <AnimatedBox /> },
 ];
@@ -32,7 +32,8 @@ export default function App() {
       <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
         <Background />
         {/* <NavBar sections={sections} /> */}
-        <FullScreenScroller>
+        <HomePage />
+        {/* <FullScreenScroller>
           {sections.map((section, i) => {
             return (
               <FullScreenSection id={section.id} key={i}>
@@ -40,7 +41,7 @@ export default function App() {
               </FullScreenSection>
             );
           })}
-        </FullScreenScroller>
+        </FullScreenScroller> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

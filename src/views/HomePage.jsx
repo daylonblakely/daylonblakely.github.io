@@ -1,16 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
-import Me from '../assets/me.jpg';
+import Me from '../assets/db_cartoon_no_bg.png';
 
 const HomeContainer = styled('div')(({ theme }) => ({
+  position: 'relative',
+  height: '100dvh',
+  border: '3px',
+  boxSizing: 'border-box',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
   gap: '20px',
-  height: '100%',
-  padding: '1.5rem',
 
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
@@ -21,8 +23,12 @@ const HomeContainer = styled('div')(({ theme }) => ({
 
 const ContentContainer = styled('div')(({ theme }) => ({
   textAlign: 'left',
+  paddingLeft: '15px',
+
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
+    paddingTop: '15px',
+    paddingLeft: 0,
   },
 }));
 
@@ -30,8 +36,14 @@ const ImageContainer = styled('div')(({ theme }) => ({
   maxWidth: '700px',
   minWidth: '500px',
   width: '100%',
+  alignSelf: 'flex-end',
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
+    alignSelf: 'auto',
+    width: 'auto',
+    '& > img': {
+      borderRadius: '300px',
+    },
   },
 }));
 
@@ -77,7 +89,7 @@ const HomePage = () => {
         <Button variant="contained">View Portfolio</Button>
       </ContentContainer>
       <ImageContainer>
-        <MeImage ref={imageRef} />
+        <MeImage />
       </ImageContainer>
     </HomeContainer>
   );
