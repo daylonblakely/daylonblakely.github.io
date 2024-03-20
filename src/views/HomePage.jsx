@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import Me from '../assets/db_cartoon_no_bg.png';
+import Bubble from '../components/Bubble';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -71,11 +72,11 @@ const MeImage = () => <img src={Me} width="100%" height="auto" alt="me!" />;
 
 const HomePage = () => {
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-  const imageRef = useRef(null);
+  const imageContainerRef = useRef(null);
 
   useEffect(() => {
-    if (imageRef.current) {
-      const { x, y } = imageRef.current.getBoundingClientRect();
+    if (imageContainerRef.current) {
+      const { x, y } = imageContainerRef.current.getBoundingClientRect();
       console.log(x);
       setImagePosition({ x, y });
     }
@@ -88,7 +89,8 @@ const HomePage = () => {
         <IntroText>Software Engineer</IntroText>
         <Button variant="contained">View Portfolio</Button>
       </ContentContainer>
-      <ImageContainer>
+      <ImageContainer ref={imageContainerRef}>
+        <Bubble parentRef={imageContainerRef} />
         <MeImage />
       </ImageContainer>
     </HomeContainer>
