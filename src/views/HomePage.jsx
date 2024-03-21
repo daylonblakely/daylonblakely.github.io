@@ -14,6 +14,7 @@ const HomeContainer = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   gap: '20px',
+  padding: '15px 15px 0px 15px',
 
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
@@ -24,12 +25,10 @@ const HomeContainer = styled('div')(({ theme }) => ({
 
 const ContentContainer = styled('div')(({ theme }) => ({
   textAlign: 'left',
-  paddingLeft: '15px',
 
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
     paddingTop: '15px',
-    paddingLeft: 0,
   },
 }));
 
@@ -38,6 +37,8 @@ const ImageContainer = styled('div')(({ theme }) => ({
   minWidth: '500px',
   width: '100%',
   alignSelf: 'flex-end',
+  position: 'relative',
+  display: 'flex',
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
     alignSelf: 'auto',
@@ -68,15 +69,31 @@ const IntroText = styled('p')(({ theme }) => ({
   },
 }));
 
+const BubbleContainer = styled('div')(({ theme }) => ({
+  height: '100%',
+  width: '100%',
+  position: 'absolute',
+  zIndex: -1,
+}));
+
+const BgCircle = styled('div')(({ theme }) => ({
+  width: '100%',
+  height: '100%',
+  borderRadius: '50%',
+  backgroundColor: 'red',
+  position: 'absolute',
+  zIndex: -1,
+}));
+
 const MeImage = () => <img src={Me} width="100%" height="auto" alt="me!" />;
 
 const HomePage = () => {
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-  const imageContainerRef = useRef(null);
+  const bubbleContainerRef = useRef(null);
 
   useEffect(() => {
-    if (imageContainerRef.current) {
-      const { x, y } = imageContainerRef.current.getBoundingClientRect();
+    if (bubbleContainerRef.current) {
+      const { x, y } = bubbleContainerRef.current.getBoundingClientRect();
       console.log(x);
       setImagePosition({ x, y });
     }
@@ -89,8 +106,11 @@ const HomePage = () => {
         <IntroText>Software Engineer</IntroText>
         <Button variant="contained">View Portfolio</Button>
       </ContentContainer>
-      <ImageContainer ref={imageContainerRef}>
-        <Bubble parentRef={imageContainerRef} />
+      <ImageContainer>
+        {/* <BubbleContainer ref={bubbleContainerRef}>
+          <Bubble parentRef={bubbleContainerRef} />
+        </BubbleContainer> */}
+        <BgCircle />
         <MeImage />
       </ImageContainer>
     </HomeContainer>

@@ -14,7 +14,7 @@ const Bubble = ({ parentRef }) => {
 
       const parentWidth = parentRef.current.clientWidth;
       const parentHeight = parentRef.current.clientHeight;
-      const bubbleSize = 50; // Size of the bubble
+      const bubbleSize = 300; // Size of the bubble
 
       while (true) {
         const newX = getRandomPosition(0, parentWidth - bubbleSize);
@@ -28,7 +28,7 @@ const Bubble = ({ parentRef }) => {
       }
     };
 
-    bounceAnimation();
+    // bounceAnimation();
 
     return () => controls.stop(); // Stop animation when component unmounts
   }, [controls, parentRef]);
@@ -38,10 +38,10 @@ const Bubble = ({ parentRef }) => {
       animate={controls}
       initial={false}
       style={{
-        width: '50px',
-        height: '50px',
+        width: '100%',
+        height: '100%',
         borderRadius: '50%',
-        backgroundColor: 'blue',
+        backgroundColor: 'red',
         position: 'absolute',
       }}
     />

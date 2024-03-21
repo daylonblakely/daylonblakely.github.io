@@ -8,6 +8,7 @@ const BackgroundContainer = styled('div')(({ theme }) => ({
   width: '100%',
   height: '100%',
   background: theme.palette.background.default,
+  zIndex: -99,
 }));
 
 const Background = () => {
