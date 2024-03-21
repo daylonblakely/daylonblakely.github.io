@@ -3,6 +3,7 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import Me from '../assets/db_cartoon_no_bg.png';
 import Bubble from '../components/Bubble';
+import AnimatedBgCircle from '../components/AnimatedBgCircle';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -76,19 +77,6 @@ const BubbleContainer = styled('div')(({ theme }) => ({
   zIndex: -1,
 }));
 
-const BgCircle = styled('div')(({ theme }) => ({
-  width: '100%',
-  height: '100%',
-  borderRadius: '50%',
-  backgroundColor: 'red',
-  position: 'absolute',
-  zIndex: -1,
-
-  [theme.breakpoints.up('md')]: {
-    marginTop: '15px',
-  },
-}));
-
 const MeImage = () => <img src={Me} width="100%" height="auto" alt="me!" />;
 
 const HomePage = () => {
@@ -114,7 +102,7 @@ const HomePage = () => {
         {/* <BubbleContainer ref={bubbleContainerRef}>
           <Bubble parentRef={bubbleContainerRef} />
         </BubbleContainer> */}
-        <BgCircle />
+        <AnimatedBgCircle />
         <MeImage />
       </ImageContainer>
     </HomeContainer>
