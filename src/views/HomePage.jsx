@@ -83,6 +83,10 @@ const BgCircle = styled('div')(({ theme }) => ({
   backgroundColor: 'red',
   position: 'absolute',
   zIndex: -1,
+
+  [theme.breakpoints.up('md')]: {
+    marginTop: '15px',
+  },
 }));
 
 const MeImage = () => <img src={Me} width="100%" height="auto" alt="me!" />;
