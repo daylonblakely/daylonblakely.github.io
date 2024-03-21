@@ -30,8 +30,12 @@ const AnimatedBgCircle = () => {
         const deltaY = event.clientY - centerY;
 
         // Calculate skew based on distance from center of the circle
-        mouseX.set((deltaX * 5) / centerX);
-        mouseY.set((deltaY * 5) / centerY);
+        const x = (deltaX * 5) / centerX;
+        const y = (deltaY * 5) / centerY;
+
+        const positiveSlope = (x > 0 && y < 0) || (x < 0 && y > 0);
+        mouseX.set(positiveSlope ? Math.abs(x) * -1 : Math.abs(x));
+        mouseY.set(positiveSlope ? Math.abs(y) * -1 : Math.abs(y));
       }
     };
 
@@ -46,7 +50,7 @@ const AnimatedBgCircle = () => {
     <AnimatedCircle
       ref={ref}
       style={{
-        skewX: mouseX,
+        // skewX: mouseX,
         skewY: mouseY,
       }}
     />
