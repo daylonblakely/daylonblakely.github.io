@@ -1,6 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { styled } from '@mui/system';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
+
+const AnimatedCircleContainer = styled(motion.div)(({ theme, size }) => ({
+  width: '100%',
+  height: '100%',
+  position: 'absolute',
+  zIndex: -1,
+  //   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.25)',
+  [theme.breakpoints.up('md')]: {
+    marginTop: '15px',
+  },
+}));
 
 const AnimatedCircle = styled(motion.div)(({ theme, size }) => ({
   width: size || '100%',
@@ -8,29 +19,26 @@ const AnimatedCircle = styled(motion.div)(({ theme, size }) => ({
   borderRadius: '50%',
   backgroundColor: 'red',
   position: 'absolute',
-  zIndex: -1,
-  //   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.25)',
-  [theme.breakpoints.up('md')]: {
-    // marginTop: '15px',
-  },
 }));
 
 const AnimatedBgCircle = () => {
   const ref = useRef(null);
   const [circles, setCircles] = useState([
     {
+      id: 0,
+      size: '100%',
+      magnitude: 2,
+    },
+    {
       id: 1,
       size: '100%',
-      //   offsetX: 100,
-      //   offsetY: 10,
-      magnitude: 10,
+      magnitude: 3,
     },
     {
       id: 2,
-      size: null,
-      //   offsetX: -,
-      //   offsetY: 0,
-      magnitude: 5,
+      size: '100%',
+      magnitude: 4,
+      rotate: '15deg',
     },
   ]);
 
@@ -51,7 +59,7 @@ const AnimatedBgCircle = () => {
             const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
 
             // Update scale based on the mouse proximity
-            const scale = 1 + (1 - distance / maxDistance) * 0.1 * i; // Increase 0.1 for more bulge
+            const scale = 1 + (1 - distance / maxDistance) * 0.01; // Increase 0.1 for more bulge
 
             const xSkew = (deltaX / centerX) * circle.magnitude;
             const ySkew = (deltaY / centerY) * circle.magnitude;
@@ -75,10 +83,7 @@ const AnimatedBgCircle = () => {
   }, []);
 
   return (
-    <div
-      ref={ref}
-      //   style={{ width: '100%', height: '100%', position: 'absolute' }}
-    >
+    <AnimatedCircleContainer ref={ref}>
       {circles.map((circle) => (
         <AnimatedCircle
           key={circle.id}
@@ -87,12 +92,11 @@ const AnimatedBgCircle = () => {
             skewX: circle.xSkew || 0,
             skewY: circle.ySkew || 0,
             scale: circle.scale || 1,
-            // left: circle.offsetX + 'px',
-            // top: circle.offsetY + 'px',
+            rotate: circle.rotate,
           }}
         />
       ))}
-    </div>
+    </AnimatedCircleContainer>
   );
 };
 
