@@ -26,6 +26,18 @@ const AnimatedLines = () => {
       animate="visible"
       style={{ zIndex: -1 }}
     >
+      {/* vertical */}
+      <motion.line
+        x1="15"
+        y1="100"
+        x2="15"
+        y2="0"
+        stroke="#0099ff"
+        strokeWidth={10}
+        variants={draw}
+        custom={1}
+      />
+      {/* horizontal */}
       <motion.line
         x1="50"
         y1="60"

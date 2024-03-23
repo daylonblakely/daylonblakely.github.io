@@ -35,6 +35,7 @@ const ContentContainer = styled('div')(({ theme }) => ({
 }));
 
 const ImageContainer = styled('div')(({ theme }) => ({
+  maxHeight: '100%',
   maxWidth: '700px',
   minWidth: '500px',
   width: '100%',
