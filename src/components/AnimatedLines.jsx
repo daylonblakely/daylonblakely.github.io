@@ -37,6 +37,27 @@ const AnimatedLines = () => {
         variants={draw}
         custom={1}
       />
+      {/* top left circle */}
+      <motion.circle cx="30" cy="7" r="4" />
+      <motion.circle
+        cx="30"
+        cy="7"
+        r="4"
+        stroke="#00cc88"
+        variants={draw}
+        fill="none"
+        custom={2}
+      />
+      {/* top right circle */}
+      <motion.circle
+        cx="85"
+        cy="15"
+        r="13"
+        stroke="#00cc88"
+        variants={draw}
+        fill="none"
+        custom={3}
+      />
       {/* horizontal */}
       <motion.line
         x1="50"
