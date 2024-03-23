@@ -4,6 +4,7 @@ import { Button } from '@mui/material';
 import Me from '../assets/db_cartoon_no_bg.png';
 import Bubble from '../components/Bubble';
 import AnimatedBgCircle from '../components/AnimatedBgCircle';
+import AnimatedLines from '../components/AnimatedLines';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -40,6 +41,11 @@ const ImageContainer = styled('div')(({ theme }) => ({
   alignSelf: 'flex-end',
   position: 'relative',
   display: 'flex',
+
+  '& > svg': {
+    position: 'absolute',
+  },
+
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
     alignSelf: 'auto',
@@ -103,6 +109,7 @@ const HomePage = () => {
           <Bubble parentRef={bubbleContainerRef} />
         </BubbleContainer> */}
         <AnimatedBgCircle />
+        <AnimatedLines />
         <MeImage />
       </ImageContainer>
     </HomeContainer>

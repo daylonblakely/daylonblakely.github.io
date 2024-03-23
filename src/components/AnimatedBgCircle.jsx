@@ -3,13 +3,18 @@ import { styled } from '@mui/system';
 import { motion } from 'framer-motion';
 
 const AnimatedCircleContainer = styled(motion.div)(({ theme, size }) => ({
-  width: '100%',
-  height: '100%',
+  width: '95%',
+  height: '95%',
   position: 'absolute',
+
+  top: '50%' /* position the top  edge of the element at the middle of the parent */,
+  left: '50%' /* position the left edge of the element at the middle of the parent */,
+
+  transform: 'translate(-50%, -50%)',
   zIndex: -1,
   //   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.25)',
   [theme.breakpoints.up('md')]: {
-    marginTop: '15px',
+    // marginTop: '15px',
   },
 }));
 
