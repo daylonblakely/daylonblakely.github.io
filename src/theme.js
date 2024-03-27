@@ -1,39 +1,26 @@
-import { createTheme } from '@mui/material/styles';
-
-export const lightTheme = createTheme({
+export const getDesignTokens = (mode) => ({
   palette: {
-    type: 'light',
-    primary: {
-      main: '#775e40',
-    },
-    secondary: {
-      main: '#5b507a',
-    },
-    error: {
-      main: '#f44336',
-    },
-    background: {
-      default: '#f1ebe4',
-      paper: '#f8f5f2',
-    },
-  },
-});
-
-export const darkTheme = createTheme({
-  palette: {
-    type: 'dark',
-    primary: {
-      main: '#775e40',
-    },
-    secondary: {
-      main: '#5b507a',
-    },
-    error: {
-      main: '#f44336',
-    },
-    background: {
-      default: '#303030',
-      paper: '#424242',
-    },
+    mode,
+    ...(mode === 'light'
+      ? {
+          // palette values for light mode
+          primary: {
+            main: '#EE3C2F',
+          },
+          secondary: {
+            main: '#00CC88',
+          },
+          tertiary: { main: '#3F84E5' },
+        }
+      : {
+          // palette values for dark mode
+          primary: {
+            main: '#EE3C2F',
+          },
+          secondary: {
+            main: '#00CC88',
+          },
+          tertiary: { main: '#3F84E5' },
+        }),
   },
 });

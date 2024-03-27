@@ -22,7 +22,7 @@ const AnimatedCircle = styled(motion.div)(({ theme, size }) => ({
   width: size || '100%',
   height: size || '100%',
   borderRadius: '50%',
-  backgroundColor: 'red',
+  backgroundColor: theme.palette.primary.main,
   position: 'absolute',
 }));
 

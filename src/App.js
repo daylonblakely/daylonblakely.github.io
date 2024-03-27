@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ColorModeContext from './context/ColorModeContext';
-import { lightTheme, darkTheme } from './theme';
+import { getDesignTokens } from './theme';
 import NavBar from './components/NavBar';
 import AnimatedBox from './components/AnimatedBox';
 import FullScreenScroller from './components/FullScreenScroller';
@@ -17,7 +17,7 @@ const sections = [
 ];
 
 export default function App() {
-  const [mode, setMode] = React.useState('light');
+  const [mode, setMode] = React.useState('dark');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
@@ -27,9 +27,12 @@ export default function App() {
     []
   );
 
+  // Update the theme only if the mode changes
+  const theme = React.useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={mode === 'light' ? lightTheme : darkTheme}>
+      <ThemeProvider theme={theme}>
         <Background />
         {/* <NavBar sections={sections} /> */}
         <HomePage />

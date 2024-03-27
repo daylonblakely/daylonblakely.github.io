@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
+import ColorModeContext from '../context/ColorModeContext';
 import Me from '../assets/db_cartoon_no_bg.png';
 import Bubble from '../components/Bubble';
 import AnimatedBgCircle from '../components/AnimatedBgCircle';
@@ -62,6 +63,7 @@ const Title = styled('h1')(({ theme }) => ({
   marginBottom: '2px',
   marginTop: 0,
   whiteSpace: 'nowrap',
+  color: theme.palette.text.primary,
 
   [theme.breakpoints.down('md')]: {
     fontSize: '3rem',
@@ -71,6 +73,7 @@ const Title = styled('h1')(({ theme }) => ({
 const IntroText = styled('p')(({ theme }) => ({
   fontSize: '2.5vw',
   marginTop: 0,
+  color: theme.palette.text.secondary,
 
   [theme.breakpoints.down('md')]: {
     fontSize: '1.2rem',
@@ -87,6 +90,8 @@ const BubbleContainer = styled('div')(({ theme }) => ({
 const MeImage = () => <img src={Me} width="100%" height="auto" alt="me!" />;
 
 const HomePage = () => {
+  const colorMode = useContext(ColorModeContext);
+
   const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
   const bubbleContainerRef = useRef(null);
 
@@ -103,7 +108,9 @@ const HomePage = () => {
       <ContentContainer>
         <Title>Daylon Blakely</Title>
         <IntroText>Software Engineer</IntroText>
-        <Button variant="contained">View Portfolio</Button>
+        <Button variant="contained" onClick={colorMode.toggleColorMode}>
+          View Portfolio
+        </Button>
       </ContentContainer>
       <ImageContainer>
         {/* <BubbleContainer ref={bubbleContainerRef}>
