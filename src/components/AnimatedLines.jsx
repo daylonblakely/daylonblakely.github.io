@@ -39,7 +39,12 @@ const AnimatedLines = () => {
         custom={1}
       />
       {/* top left circle */}
-      <motion.circle cx="30" cy="7" r="4" />
+      <motion.circle
+        cx="30"
+        cy="7"
+        r="4"
+        fill={theme.palette.background.default}
+      />
       <motion.circle
         cx="30"
         cy="7"

@@ -13,8 +13,10 @@ const AnimatedCircleContainer = styled(motion.div)(({ theme, size }) => ({
   transform: 'translate(-50%, -50%)',
   zIndex: -1,
   //   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.25)',
-  [theme.breakpoints.up('md')]: {
+  [theme.breakpoints.down('md')]: {
     // marginTop: '15px',
+    width: '99%',
+    height: '99%',
   },
 }));
 
@@ -27,6 +29,7 @@ const AnimatedCircle = styled(motion.div)(({ theme, size }) => ({
 }));
 
 const AnimatedBgCircle = () => {
+  const [isBelowMd, setIsBelowMd] = useState(window.innerWidth < 899.95);
   const ref = useRef(null);
   const [circles, setCircles] = useState([
     {
@@ -48,8 +51,20 @@ const AnimatedBgCircle = () => {
   ]);
 
   useEffect(() => {
+    const handleResize = () => {
+      setIsBelowMd(window.innerWidth < 899.95);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isBelowMd]);
+
+  useEffect(() => {
     const handleMouseMove = (event) => {
-      if (ref.current) {
+      if (!isBelowMd && ref.current) {
         const rect = ref.current.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
@@ -85,7 +100,7 @@ const AnimatedBgCircle = () => {
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
     };
-  }, []);
+  }, [circles, isBelowMd]);
 
   return (
     <AnimatedCircleContainer ref={ref}>
