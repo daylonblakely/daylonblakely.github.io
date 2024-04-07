@@ -17,7 +17,7 @@ const HomeContainer = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   gap: '20px',
-  padding: '15px 15px 0px 15px',
+  padding: '20px',
 
   [theme.breakpoints.up('md')]: {
     flexDirection: 'row',
@@ -36,30 +36,12 @@ const ContentContainer = styled('div')(({ theme }) => ({
 }));
 
 const ImageContainer = styled('div')(({ theme }) => ({
-  // // maxHeight: '100%',
-  // // maxWidth: '700px',
-  // // minWidth: '500px',
-  // width: '100%',
-  // // alignSelf: 'flex-end',
-  // position: 'relative',
-  // display: 'flex',
   position: 'relative',
   display: 'flex',
-  // maxWidth: '100%', // ensures it doesn't overflow screen width
-  // maxHeight: '100vh', // ensures it doesn't overflow screen height
-  minWidth: '500px',
-  // width: '800px',
+  maxWidth: '600px',
+  flex: 1,
   justifyContent: 'center', // center the image if smaller than the container
   alignItems: 'center', // center the image vertically
-
-  // // Allow the container to grow based on the image size
-  // '& > img': {
-  //   maxWidth: '80vw', // max width as a percentage of the viewport width
-  //   maxHeight: '80vh', // max height as a percentage of the viewport height
-  //   width: 'auto', // keep width responsive
-  //   height: 'auto', // keep height responsive
-  //   objectFit: 'contain', // ensures the image is scaled properly
-  // },
 
   '& > svg': {
     position: 'absolute',
@@ -69,9 +51,6 @@ const ImageContainer = styled('div')(({ theme }) => ({
     minWidth: '300px',
     alignSelf: 'auto',
     width: 'auto',
-    '& > img': {
-      borderRadius: '300px',
-    },
   },
 }));
 
@@ -109,20 +88,13 @@ const MeImage = () => (
     src={Me}
     height="auto"
     alt="me!"
-    // style={{
-    //   maxWidth: '80vw', // allow image to grow up to 80% of the viewport width
-    //   maxHeight: '80vh', // allow image to grow up to 80% of the viewport height
-    //   objectFit: 'contain', // ensures the image is scaled properly
-    //   width: 'auto', // keep width responsive
-    //   height: 'auto', // keep height responsive
-    // }}
     style={{
       maxWidth: '100%', // allows the image to fill the container width
       maxHeight: '100%', // allows the image to fill the container height
       width: '100%', // starts at 100% of the parent width
       height: 'auto', // adjusts height automatically to maintain aspect ratio
       objectFit: 'contain', // ensures the image is scaled properly
-      borderRadius: '300px',
+      borderRadius: '700px',
     }}
   />
 );
