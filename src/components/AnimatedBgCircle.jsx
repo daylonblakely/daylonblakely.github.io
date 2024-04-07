@@ -3,8 +3,8 @@ import { styled } from '@mui/system';
 import { motion } from 'framer-motion';
 
 const AnimatedCircleContainer = styled(motion.div)(({ theme, size }) => ({
-  width: '95%',
-  height: '95%',
+  width: '100%',
+  height: '99%',
   position: 'absolute',
 
   top: '50%' /* position the top  edge of the element at the middle of the parent */,
@@ -13,11 +13,11 @@ const AnimatedCircleContainer = styled(motion.div)(({ theme, size }) => ({
   transform: 'translate(-50%, -50%)',
   zIndex: -1,
   //   boxShadow: '0px 0px 20px rgba(0, 0, 0, 0.25)',
-  [theme.breakpoints.down('md')]: {
-    // marginTop: '15px',
-    width: '99%',
-    height: '99%',
-  },
+  //   [theme.breakpoints.down('md')]: {
+  //     // marginTop: '15px',
+  //     width: '100%',
+  //     height: '99%',
+  //   },
 }));
 
 const AnimatedCircle = styled(motion.div)(({ theme, size }) => ({
@@ -28,27 +28,29 @@ const AnimatedCircle = styled(motion.div)(({ theme, size }) => ({
   position: 'absolute',
 }));
 
+const INITIAL_CIRCLES = [
+  {
+    id: 0,
+    size: '100%',
+    magnitude: 2,
+  },
+  {
+    id: 1,
+    size: '100%',
+    magnitude: 3,
+  },
+  {
+    id: 2,
+    size: '100%',
+    magnitude: 4,
+    rotate: '15deg',
+  },
+];
+
 const AnimatedBgCircle = () => {
   const [isBelowMd, setIsBelowMd] = useState(window.innerWidth < 899.95);
   const ref = useRef(null);
-  const [circles, setCircles] = useState([
-    {
-      id: 0,
-      size: '100%',
-      magnitude: 2,
-    },
-    {
-      id: 1,
-      size: '100%',
-      magnitude: 3,
-    },
-    {
-      id: 2,
-      size: '100%',
-      magnitude: 4,
-      rotate: '15deg',
-    },
-  ]);
+  const [circles, setCircles] = useState(INITIAL_CIRCLES);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,34 +66,38 @@ const AnimatedBgCircle = () => {
 
   useEffect(() => {
     const handleMouseMove = (event) => {
-      if (!isBelowMd && ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
+      if (ref.current) {
+        if (isBelowMd) {
+          setCircles(INITIAL_CIRCLES);
+        } else {
+          const rect = ref.current.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
 
-        setCircles(
-          circles.map((circle, i) => {
-            const deltaX = event.clientX - centerX;
-            const deltaY = event.clientY - centerY;
+          setCircles(
+            circles.map((circle, i) => {
+              const deltaX = event.clientX - centerX;
+              const deltaY = event.clientY - centerY;
 
-            // Calculate distance from the center of the circle to the mouse
-            const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
-            const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
+              // Calculate distance from the center of the circle to the mouse
+              const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+              const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
 
-            // Update scale based on the mouse proximity
-            const scale = 1 + (1 - distance / maxDistance) * 0.01; // Increase 0.1 for more bulge
+              // Update scale based on the mouse proximity
+              const scale = 1 + (1 - distance / maxDistance) * 0.01; // Increase 0.1 for more bulge
 
-            const xSkew = (deltaX / centerX) * circle.magnitude;
-            const ySkew = (deltaY / centerY) * circle.magnitude;
+              const xSkew = (deltaX / centerX) * circle.magnitude;
+              const ySkew = (deltaY / centerY) * circle.magnitude;
 
-            return {
-              ...circle,
-              xSkew,
-              ySkew,
-              scale,
-            };
-          })
-        );
+              return {
+                ...circle,
+                xSkew,
+                ySkew,
+                scale,
+              };
+            })
+          );
+        }
       }
     };
 
