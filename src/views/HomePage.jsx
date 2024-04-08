@@ -52,6 +52,10 @@ const ImageContainer = styled('div')(({ theme }) => ({
     alignSelf: 'auto',
     width: 'auto',
   },
+
+  [theme.breakpoints.up('xl')]: {
+    maxWidth: '900px',
+  },
 }));
 
 const Title = styled('h1')(({ theme }) => ({
