@@ -27,6 +27,16 @@ const AnimatedCircle = styled(motion.div)(({ theme }) => ({
   zIndex: -1,
 }));
 
+const topLeftFillV = {
+  visible: {
+    opacity: 1,
+    transition: {
+      opacity: { delay: 2.1, duration: 1.5 },
+    },
+  },
+  hidden: { opacity: 0 },
+};
+
 const AnimatedLines = () => {
   const theme = useTheme();
   const { mode } = useContext(ColorModeContext);
@@ -66,6 +76,7 @@ const AnimatedLines = () => {
           cy="7"
           r="4"
           fill={theme.palette.background.default}
+          variants={topLeftFillV}
         />
         <motion.circle
           cx="30"
