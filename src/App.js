@@ -20,11 +20,12 @@ export default function App() {
   const [mode, setMode] = React.useState('dark');
   const colorMode = React.useMemo(
     () => ({
+      mode,
       toggleColorMode: () => {
         setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
       },
     }),
-    []
+    [mode]
   );
 
   // Update the theme only if the mode changes

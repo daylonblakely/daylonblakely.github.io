@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@mui/material/styles';
 import { styled } from '@mui/system';
+import ColorModeContext from '../context/ColorModeContext';
 
 const draw = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -28,11 +29,19 @@ const AnimatedCircle = styled(motion.div)(({ theme }) => ({
 
 const AnimatedLines = () => {
   const theme = useTheme();
+  const { mode } = useContext(ColorModeContext);
+
+  const [animationKey, setAnimationKey] = useState(0);
+
+  useEffect(() => {
+    setAnimationKey((prevKey) => prevKey + 1); // Increment the key to trigger rerender
+  }, [mode]); // Dependency array includes mode, so this effect runs when mode changes
 
   return (
     <>
       {/* bg circle */}
       <AnimatedCircle
+        key={animationKey} // Key changed, component will rerender and animation will restart
         animate={{
           scale: [1, 1.2, 1.2, 1, 1],
           rotate: [0, 0, 180, 180, 0],
@@ -45,6 +54,7 @@ const AnimatedLines = () => {
         }}
       />
       <motion.svg
+        key={animationKey + 1}
         viewBox="0 0 100 100"
         initial="hidden"
         animate="visible"
@@ -98,7 +108,12 @@ const AnimatedLines = () => {
           custom={2}
         />
       </motion.svg>
-      <motion.svg viewBox="0 0 100 100" initial="hidden" animate="visible">
+      <motion.svg
+        key={animationKey + 2}
+        viewBox="0 0 100 100"
+        initial="hidden"
+        animate="visible"
+      >
         {/* vertical line */}
         <motion.line
           x1="15"
