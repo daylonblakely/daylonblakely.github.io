@@ -6,6 +6,7 @@ import Me from '../assets/db_cartoon_no_bg_2.png';
 import Bubble from '../components/Bubble';
 import AnimatedBgCircle from '../components/AnimatedBgCircle';
 import AnimatedLines from '../components/AnimatedLines';
+import MuiSwitch from '../components/MuiSwitch';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -23,6 +24,12 @@ const HomeContainer = styled('div')(({ theme }) => ({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+
+  '& .MuiSwitch-root': {
+    position: 'absolute',
+    bottom: '20px',
+    right: '20px',
   },
 }));
 
@@ -134,6 +141,10 @@ const HomePage = () => {
         <AnimatedLines />
         <MeImage />
       </ImageContainer>
+      <MuiSwitch
+        checked={colorMode.mode === 'dark'}
+        onChange={colorMode.toggleColorMode}
+      />
     </HomeContainer>
   );
 };

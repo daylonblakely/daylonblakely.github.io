@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@mui/material/styles';
-import { styled } from '@mui/system';
 import ColorModeContext from '../context/ColorModeContext';
 
 const draw = {
@@ -18,14 +17,6 @@ const draw = {
     };
   },
 };
-
-const AnimatedCircle = styled(motion.div)(({ theme }) => ({
-  width: '100%',
-  height: '99.5%',
-  background: theme.palette.primary.main,
-  position: 'absolute',
-  zIndex: -1,
-}));
 
 const topLeftFillV = {
   visible: {
@@ -50,19 +41,30 @@ const AnimatedLines = () => {
   return (
     <>
       {/* bg circle */}
-      <AnimatedCircle
+      <motion.svg
         key={animationKey} // Key changed, component will rerender and animation will restart
-        animate={{
-          scale: [1, 1.2, 1.2, 1, 1],
-          rotate: [0, 0, 180, 180, 0],
-          borderRadius: ['0%', '0%', '50%', '0%', '50%'],
-        }}
-        transition={{
-          duration: 2,
-          ease: 'easeInOut',
-          times: [0, 0.2, 0.5, 0.8, 1],
-        }}
-      />
+        viewBox="0 0 100 100"
+        style={{ zIndex: -1 }}
+      >
+        <motion.rect
+          x="0"
+          y="0"
+          width="100"
+          height="99.8"
+          rx="50"
+          fill={theme.palette.primary.main}
+          animate={{
+            scale: [0.5, 1, 0.4, 0.5, 1],
+            rotate: [180, 0, 0, 180, 0],
+            rx: ['20', '10', '50', '30', '50'],
+          }}
+          transition={{
+            duration: 2,
+            ease: 'easeInOut',
+            times: [0, 0.2, 0.5, 0.8, 1],
+          }}
+        />
+      </motion.svg>
       <motion.svg
         key={animationKey + 1}
         viewBox="0 0 100 100"
