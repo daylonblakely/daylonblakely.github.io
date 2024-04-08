@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useTheme } from '@mui/material/styles';
+import { styled } from '@mui/system';
 
 const draw = {
   hidden: { pathLength: 0, opacity: 0 },
@@ -17,35 +18,38 @@ const draw = {
   },
 };
 
-const redCircleVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      opacity: { duration: 2 },
-    },
-  },
-};
+const AnimatedCircle = styled(motion.div)(({ theme }) => ({
+  width: '100%',
+  height: '99.5%',
+  background: theme.palette.primary.main,
+  position: 'absolute',
+  zIndex: -1,
+}));
 
 const AnimatedLines = () => {
   const theme = useTheme();
 
   return (
     <>
+      {/* bg circle */}
+      <AnimatedCircle
+        animate={{
+          scale: [1, 1.2, 1.2, 1, 1],
+          rotate: [0, 0, 180, 180, 0],
+          borderRadius: ['0%', '0%', '50%', '0%', '50%'],
+        }}
+        transition={{
+          duration: 2,
+          ease: 'easeInOut',
+          times: [0, 0.2, 0.5, 0.8, 1],
+        }}
+      />
       <motion.svg
         viewBox="0 0 100 100"
         initial="hidden"
         animate="visible"
         style={{ zIndex: -1 }}
       >
-        {/* bg circle */}
-        <motion.circle
-          cx="50"
-          cy="50"
-          r="49.9"
-          variants={redCircleVariants}
-          fill={theme.palette.primary.main}
-        />
         {/* top left circle */}
         <motion.circle
           cx="30"
