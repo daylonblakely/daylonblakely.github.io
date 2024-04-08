@@ -17,6 +17,16 @@ const draw = {
   },
 };
 
+const redCircleVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      opacity: { duration: 2 },
+    },
+  },
+};
+
 const AnimatedLines = () => {
   const theme = useTheme();
 
@@ -33,10 +43,8 @@ const AnimatedLines = () => {
           cx="50"
           cy="50"
           r="49.9"
-          // stroke={theme.palette.secondary.main}
-          // variants={draw}
+          variants={redCircleVariants}
           fill={theme.palette.primary.main}
-          // custom={3}
         />
         {/* top left circle */}
         <motion.circle
