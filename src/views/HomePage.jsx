@@ -3,8 +3,8 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import ColorModeContext from '../context/ColorModeContext';
 import Me from '../assets/db_cartoon_no_bg_2.png';
-import Bubble from '../components/Bubble';
-import AnimatedBgCircle from '../components/AnimatedBgCircle';
+// import Bubble from '../components/Bubble';
+import AnimatedCircles from '../components/AnimatedCircles';
 import AnimatedLines from '../components/AnimatedLines';
 import MuiSwitch from '../components/MuiSwitch';
 
@@ -44,11 +44,7 @@ const ContentContainer = styled('div')(({ theme }) => ({
 
 const ImageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  display: 'flex',
-  maxWidth: '600px',
-  flex: 1,
-  justifyContent: 'center', // center the image if smaller than the container
-  alignItems: 'center', // center the image vertically
+  minWidth: '600px',
 
   '& > svg': {
     position: 'absolute',
@@ -56,12 +52,10 @@ const ImageContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
-    alignSelf: 'auto',
-    width: 'auto',
   },
 
   [theme.breakpoints.up('xl')]: {
-    maxWidth: '900px',
+    // maxWidth: '900px',
   },
 }));
 
@@ -100,8 +94,6 @@ const MeImage = () => (
     height="auto"
     alt="me!"
     style={{
-      maxWidth: '100%', // allows the image to fill the container width
-      maxHeight: '100%', // allows the image to fill the container height
       width: '100%', // starts at 100% of the parent width
       height: 'auto', // adjusts height automatically to maintain aspect ratio
       objectFit: 'contain', // ensures the image is scaled properly
@@ -125,27 +117,30 @@ const HomePage = () => {
   }, []);
 
   return (
-    <HomeContainer>
-      <ContentContainer>
-        <Title>Daylon Blakely</Title>
-        <IntroText>Software Engineer</IntroText>
-        <Button variant="contained" onClick={colorMode.toggleColorMode}>
-          View Portfolio
-        </Button>
-      </ContentContainer>
-      <ImageContainer>
+    <>
+      <AnimatedCircles numberOfCircles={200} />
+      <HomeContainer>
+        <ContentContainer>
+          <Title>Daylon Blakely</Title>
+          <IntroText>Software Engineer</IntroText>
+          <Button variant="contained" onClick={colorMode.toggleColorMode}>
+            View Portfolio
+          </Button>
+        </ContentContainer>
+
         {/* <BubbleContainer ref={bubbleContainerRef}>
-          <Bubble parentRef={bubbleContainerRef} />
-        </BubbleContainer> */}
-        {/* <AnimatedBgCircle /> */}
-        <AnimatedLines />
-        <MeImage />
-      </ImageContainer>
-      <MuiSwitch
-        checked={colorMode.mode === 'dark'}
-        onChange={colorMode.toggleColorMode}
-      />
-    </HomeContainer>
+        <Bubble parentRef={bubbleContainerRef} />
+      </BubbleContainer> */}
+        <ImageContainer>
+          <AnimatedLines />
+          <MeImage />
+        </ImageContainer>
+        <MuiSwitch
+          checked={colorMode.mode === 'dark'}
+          onChange={colorMode.toggleColorMode}
+        />
+      </HomeContainer>
+    </>
   );
 };
 

@@ -44,7 +44,9 @@ const AnimatedLines = () => {
       <motion.svg
         key={animationKey} // Key changed, component will rerender and animation will restart
         viewBox="0 0 100 100"
-        style={{ zIndex: -1 }}
+        style={{
+          zIndex: -1,
+        }}
       >
         <motion.rect
           x="0"
