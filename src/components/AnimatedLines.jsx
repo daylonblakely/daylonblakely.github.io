@@ -22,7 +22,7 @@ const topLeftFillV = {
   visible: {
     opacity: 1,
     transition: {
-      opacity: { delay: 2.1, duration: 1.5 },
+      opacity: { delay: 0.8, duration: 1 },
     },
   },
   hidden: { opacity: 0 },
@@ -42,19 +42,36 @@ const AnimatedLines = () => {
     <>
       {/* bg circle */}
       <motion.svg
-        key={animationKey} // Key changed, component will rerender and animation will restart
+        key={animationKey}
         viewBox="0 0 100 100"
         style={{
           zIndex: -1,
+          filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', // Shadow added here
         }}
       >
+        <defs>
+          <motion.linearGradient
+            id="gradient"
+            x1="100%"
+            y1="0%"
+            x2="50%"
+            y2="100%"
+          >
+            <stop
+              offset="0%"
+              stopColor={theme.palette.primary.light}
+              // stopColor={theme.palette.background.default}
+            />
+            <stop offset="100%" stopColor={theme.palette.primary.dark} />
+          </motion.linearGradient>
+        </defs>
         <motion.rect
           x="0"
           y="0"
           width="100"
           height="99.8"
           rx="50"
-          fill={theme.palette.primary.main}
+          fill="url(#gradient)"
           animate={{
             scale: [0.5, 1, 0.4, 0.5, 1],
             rotate: [180, 0, 0, 180, 0],
