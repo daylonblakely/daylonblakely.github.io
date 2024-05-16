@@ -33,7 +33,7 @@ const ContentContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
-    paddingTop: '15px',
+    order: 2,
   },
 }));
 
@@ -44,7 +44,6 @@ const ImageContainer = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
   maxWidth: '40%', // Ensure it does not exceed the parent container's width
-  // maxHeight: '50%',
 
   '& > svg': {
     position: 'absolute',
@@ -53,6 +52,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
     maxWidth: 'auto',
+    flex: '0 1 auto',
   },
 
   [theme.breakpoints.up('xl')]: {
