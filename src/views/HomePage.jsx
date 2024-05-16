@@ -11,7 +11,7 @@ import ModeToggle from '../components/ModeToggle';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  height: '100dvh',
+  height: '100vh', // Changed to 100vh to use viewport height units
   border: '3px',
   boxSizing: 'border-box',
   display: 'flex',
@@ -39,7 +39,12 @@ const ContentContainer = styled('div')(({ theme }) => ({
 
 const ImageContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  minWidth: '600px',
+  flex: '1 1 auto', // Allow the container to grow and shrink as needed
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  maxWidth: '40%', // Ensure it does not exceed the parent container's width
+  // maxHeight: '50%',
 
   '& > svg': {
     position: 'absolute',
@@ -47,6 +52,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
+    maxWidth: 'auto',
   },
 
   [theme.breakpoints.up('xl')]: {
@@ -83,19 +89,13 @@ const BubbleContainer = styled('div')(({ theme }) => ({
   zIndex: -1,
 }));
 
-const MeImage = () => (
-  <img
-    src={Me}
-    height="auto"
-    alt="me!"
-    style={{
-      width: '100%', // starts at 100% of the parent width
-      height: 'auto', // adjusts height automatically to maintain aspect ratio
-      objectFit: 'contain', // ensures the image is scaled properly
-      borderRadius: '700px',
-    }}
-  />
-);
+const MeImage = styled('img')(({ theme }) => ({
+  width: '100%', // starts at 100% of the parent width
+  height: 'auto', // adjusts height automatically to maintain aspect ratio
+  objectFit: 'contain', // ensures the image is scaled properly
+  borderRadius: '700px',
+  maxWidth: '100%', // Ensure the image doesn't exceed the container
+}));
 
 const SocialIconContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -144,7 +144,7 @@ const HomePage = () => {
       </BubbleContainer> */}
         <ImageContainer>
           <AnimatedLines />
-          <MeImage />
+          <MeImage src={Me} alt="me!" />
         </ImageContainer>
         <ModeToggleContainer>
           <ModeToggle />
