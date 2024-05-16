@@ -6,7 +6,8 @@ import Me from '../assets/db_cartoon_no_bg_2.png';
 // import Bubble from '../components/Bubble';
 import AnimatedCircles from '../components/AnimatedCircles';
 import AnimatedLines from '../components/AnimatedLines';
-import MuiSwitch from '../components/MuiSwitch';
+import SocialIcons from '../components/SocialIcons';
+import ModeToggle from '../components/ModeToggle';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -24,12 +25,6 @@ const HomeContainer = styled('div')(({ theme }) => ({
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-
-  '& .MuiSwitch-root': {
-    position: 'absolute',
-    bottom: '20px',
-    right: '20px',
   },
 }));
 
@@ -102,6 +97,18 @@ const MeImage = () => (
   />
 );
 
+const SocialIconContainer = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  bottom: '20px',
+  left: '20px',
+}));
+
+const ModeToggleContainer = styled('div')(({ theme }) => ({
+  position: 'absolute',
+  bottom: '20px',
+  right: '20px',
+}));
+
 const HomePage = () => {
   const colorMode = useContext(ColorModeContext);
 
@@ -118,8 +125,12 @@ const HomePage = () => {
 
   return (
     <>
-      <AnimatedCircles numberOfCircles={200} />
+      {/* <AnimatedCircles numberOfCircles={200} /> */}
       <HomeContainer>
+        <SocialIconContainer>
+          <SocialIcons />
+        </SocialIconContainer>
+
         <ContentContainer>
           <Title>Daylon Blakely</Title>
           <IntroText>Software Engineer</IntroText>
@@ -135,10 +146,9 @@ const HomePage = () => {
           <AnimatedLines />
           <MeImage />
         </ImageContainer>
-        <MuiSwitch
-          checked={colorMode.mode === 'dark'}
-          onChange={colorMode.toggleColorMode}
-        />
+        <ModeToggleContainer>
+          <ModeToggle />
+        </ModeToggleContainer>
       </HomeContainer>
     </>
   );
