@@ -30,6 +30,7 @@ const HomeContainer = styled('div')(({ theme }) => ({
 
 const ContentContainer = styled('div')(({ theme }) => ({
   textAlign: 'left',
+  zIndex: 3,
 
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
@@ -101,12 +102,14 @@ const SocialIconContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   bottom: '20px',
   left: '20px',
+  zIndex: 3,
 }));
 
 const ModeToggleContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   bottom: '20px',
   right: '20px',
+  zIndex: 3,
 }));
 
 const HomePage = () => {

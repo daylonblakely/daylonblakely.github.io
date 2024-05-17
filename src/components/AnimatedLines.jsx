@@ -155,7 +155,7 @@ const AnimatedLines = () => {
           stroke={theme.palette.tertiary.main}
           strokeWidth={10}
           variants={draw}
-          custom={1}
+          custom={3}
         />
       </motion.svg>
     </>
