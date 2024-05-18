@@ -9,7 +9,7 @@ import ModeToggle from '../components/ModeToggle';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
-  height: '100vh', // Changed to 100vh to use viewport height units
+  minHeight: '100vh', // Changed to 100vh to use viewport height units
   border: '3px',
   boxSizing: 'border-box',
   display: 'flex',
