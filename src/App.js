@@ -3,18 +3,18 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ColorModeContext from './context/ColorModeContext';
 import { getDesignTokens } from './theme';
-import NavBar from './components/NavBar';
-import AnimatedBox from './components/AnimatedBox';
-import FullScreenScroller from './components/FullScreenScroller';
-import FullScreenSection from './components/FullScreenSection';
+// import NavBar from './components/NavBar';
+// import AnimatedBox from './components/AnimatedBox';
+// import FullScreenScroller from './components/FullScreenScroller';
+// import FullScreenSection from './components/FullScreenSection';
 import Background from './components/Background';
 import HomePage from './views/HomePage';
 
-const sections = [
-  // { id: 'section1', element: <HomePage /> },
-  { id: 'section2', element: <AnimatedBox /> },
-  { id: 'section3', element: <AnimatedBox /> },
-];
+// const sections = [
+//   // { id: 'section1', element: <HomePage /> },
+//   { id: 'section2', element: <AnimatedBox /> },
+//   { id: 'section3', element: <AnimatedBox /> },
+// ];
 
 export default function App() {
   const [mode, setMode] = React.useState('dark');

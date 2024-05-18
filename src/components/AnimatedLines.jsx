@@ -91,10 +91,10 @@ const AnimatedLines = () => {
         animate="visible"
         style={{ zIndex: -1 }}
       >
-        {/* top left circle */}
+        {/* top right cutout circle */}
         <motion.circle
-          cx="75"
-          cy="10"
+          cx="68"
+          cy="6"
           r="10"
           fill={theme.palette.background.default}
           variants={topLeftFillV}

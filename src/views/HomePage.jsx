@@ -116,7 +116,7 @@ const HomePage = () => {
         <ContentContainer>
           <Title>Daylon Blakely</Title>
           <IntroText>Software Engineer</IntroText>
-          <Button variant="contained" onClick={colorMode.toggleColorMode}>
+          <Button variant="contained" onClick={() => alert('WIP')}>
             View Portfolio
           </Button>
         </ContentContainer>

@@ -25,17 +25,10 @@ const DiagonalShadowOverlay = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '100%',
   zIndex: 2,
-  // background:
-  //   'linear-gradient(to top right, #fff0, #fff0 80%, rgba(255, 255, 255, 0.1))', // Light to dark gradient
   background:
     theme.palette.mode === 'light'
       ? 'linear-gradient(to bottom left, #fff0, #fff0 40%, rgba(0, 0, 0, 0.2))'
       : 'linear-gradient(to top right, #fff0, #fff0 20%, rgba(59, 59, 59, .1), rgba(119, 119, 119, .1), rgba(255, 255, 255, 0.1) )',
-  // 'linear-gradient(to right top, rgba(0, 0, 0, 0.1), rgba(59, 59, 59, .1), rgba(119, 119, 119, .1), rgba(185, 185, 185, .1), rgba(255, 255, 255, 0.1))',
-  // background:
-  //   theme.palette.mode === 'light'
-  //     ? `linear-gradient(to bottom left, #fff0, #fff0 30%, ${theme.palette.background.default} 30%, ${theme.palette.divider})`
-  //     : `linear-gradient(to top right, #fff0, #fff0 70%, ${theme.palette.background.default} 50%, ${theme.palette.divider})`, // Adjust the colors as needed
 }));
 
 const Background = () => {
