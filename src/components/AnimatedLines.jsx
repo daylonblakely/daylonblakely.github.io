@@ -93,20 +93,19 @@ const AnimatedLines = () => {
       >
         {/* top left circle */}
         <motion.circle
-          cx="30"
-          cy="7"
-          r="4"
+          cx="75"
+          cy="10"
+          r="10"
           fill={theme.palette.background.default}
           variants={topLeftFillV}
         />
-        <motion.circle
-          cx="30"
-          cy="7"
-          r="4"
+        {/* left triangle */}
+        <motion.polygon
+          points="40,35 1,60 30,1"
           stroke={theme.palette.secondary.main}
-          variants={draw}
           fill="none"
-          custom={2}
+          variants={draw}
+          custom={1}
         />
         {/* top right circle */}
         <motion.circle
@@ -156,6 +155,15 @@ const AnimatedLines = () => {
           strokeWidth={10}
           variants={draw}
           custom={3}
+        />
+        {/* Overlapping SVG */}
+        {/* vertical line with top curve cut out */}
+        <motion.path
+          d="M9.98 79.87 Q14 85.5, 20 90.05 L20.01 100 L9.98 100 Z"
+          strokeWidth={1}
+          fill={theme.palette.secondary.main}
+          variants={draw}
+          custom={2.9}
         />
       </motion.svg>
     </>
