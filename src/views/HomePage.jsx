@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useContext } from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import ColorModeContext from '../context/ColorModeContext';
 import Me from '../assets/db_cartoon_no_bg_2.png';
-// import Bubble from '../components/Bubble';
-import AnimatedCircles from '../components/AnimatedCircles';
 import AnimatedLines from '../components/AnimatedLines';
 import SocialIcons from '../components/SocialIcons';
 import ModeToggle from '../components/ModeToggle';
@@ -52,13 +50,23 @@ const ImageContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
-    maxWidth: 'auto',
+    maxWidth: '60%',
     flex: '0 1 auto',
   },
 
   [theme.breakpoints.up('xl')]: {
-    // maxWidth: '900px',
+    maxWidth: '30%',
   },
+}));
+
+const FooterContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  justifyContent: 'space-between',
+  position: 'absolute',
+  bottom: '5px',
+  width: '100%',
+  zIndex: 3,
+  gap: '20px',
 }));
 
 const Title = styled('h1')(({ theme }) => ({
@@ -83,13 +91,6 @@ const IntroText = styled('p')(({ theme }) => ({
   },
 }));
 
-const BubbleContainer = styled('div')(({ theme }) => ({
-  height: '100%',
-  width: '100%',
-  position: 'absolute',
-  zIndex: -1,
-}));
-
 const MeImage = styled('img')(({ theme }) => ({
   width: '100%', // starts at 100% of the parent width
   height: 'auto', // adjusts height automatically to maintain aspect ratio
@@ -99,41 +100,19 @@ const MeImage = styled('img')(({ theme }) => ({
 }));
 
 const SocialIconContainer = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  bottom: '20px',
-  left: '20px',
-  zIndex: 3,
+  marginLeft: '20px',
 }));
 
 const ModeToggleContainer = styled('div')(({ theme }) => ({
-  position: 'absolute',
-  bottom: '20px',
-  right: '20px',
-  zIndex: 3,
+  marginRight: '20px',
 }));
 
 const HomePage = () => {
   const colorMode = useContext(ColorModeContext);
 
-  const [imagePosition, setImagePosition] = useState({ x: 0, y: 0 });
-  const bubbleContainerRef = useRef(null);
-
-  useEffect(() => {
-    if (bubbleContainerRef.current) {
-      const { x, y } = bubbleContainerRef.current.getBoundingClientRect();
-      console.log(x);
-      setImagePosition({ x, y });
-    }
-  }, []);
-
   return (
     <>
-      {/* <AnimatedCircles numberOfCircles={200} /> */}
       <HomeContainer>
-        <SocialIconContainer>
-          <SocialIcons />
-        </SocialIconContainer>
-
         <ContentContainer>
           <Title>Daylon Blakely</Title>
           <IntroText>Software Engineer</IntroText>
@@ -141,18 +120,19 @@ const HomePage = () => {
             View Portfolio
           </Button>
         </ContentContainer>
-
-        {/* <BubbleContainer ref={bubbleContainerRef}>
-        <Bubble parentRef={bubbleContainerRef} />
-      </BubbleContainer> */}
         <ImageContainer>
           <AnimatedLines />
           <MeImage src={Me} alt="me!" />
         </ImageContainer>
+      </HomeContainer>
+      <FooterContainer>
+        <SocialIconContainer>
+          <SocialIcons />
+        </SocialIconContainer>
         <ModeToggleContainer>
           <ModeToggle />
         </ModeToggleContainer>
-      </HomeContainer>
+      </FooterContainer>
     </>
   );
 };
