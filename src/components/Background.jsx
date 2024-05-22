@@ -7,13 +7,12 @@ const BackgroundContainer = styled('div')(({ theme }) => ({
   top: 0,
   left: 0,
   width: '100%',
-  height: '100vh',
+  height: '100%',
   background: theme.palette.background.default,
   zIndex: -99,
 }));
 
 const DiagonalColorOverlay = styled(Box)(({ theme }) => ({
-  position: 'absolute',
   width: '100%',
   height: '100%',
 
@@ -23,7 +22,7 @@ const DiagonalColorOverlay = styled(Box)(({ theme }) => ({
 const DiagonalShadowOverlay = styled(Box)(({ theme }) => ({
   position: 'absolute',
   width: '100%',
-  height: '100vh',
+  height: '100%',
   zIndex: 2,
   background:
     theme.palette.mode === 'light'
