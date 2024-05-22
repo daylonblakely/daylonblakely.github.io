@@ -8,7 +8,7 @@ const draw = {
   visible: (i) => {
     const delay = 1 + i * 0.5;
     return {
-      pathLength: 1,
+      pathLength: 1.1,
       opacity: 1,
       transition: {
         pathLength: { delay, type: 'spring', duration: 1.5, bounce: 0 },
@@ -46,7 +46,7 @@ const AnimatedLines = () => {
         viewBox="0 0 100 100"
         style={{
           zIndex: -1,
-          filter: 'drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))', // Shadow added here
+          filter: 'drop-shadow(-5px 5px 4px rgba(0, 0, 0, 0.25))', // Shadow added here
         }}
       >
         <defs>
