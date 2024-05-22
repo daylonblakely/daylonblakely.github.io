@@ -1,8 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
-import ColorModeContext from '../context/ColorModeContext';
-import Me from '../assets/db_cartoon_no_bg_2.png';
+import Me from '../assets/db_cartoon_no_bg.png';
 import AnimatedLines from '../components/AnimatedLines';
 import SocialIcons from '../components/SocialIcons';
 import ModeToggle from '../components/ModeToggle';
@@ -108,8 +107,6 @@ const ModeToggleContainer = styled('div')(({ theme }) => ({
 }));
 
 const HomePage = () => {
-  const colorMode = useContext(ColorModeContext);
-
   return (
     <>
       <HomeContainer>
