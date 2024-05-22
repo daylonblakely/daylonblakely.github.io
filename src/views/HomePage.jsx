@@ -116,7 +116,11 @@ const HomePage = () => {
         <ContentContainer>
           <Title>Daylon Blakely</Title>
           <IntroText>Software Engineer</IntroText>
-          <Button variant="contained" onClick={() => alert('WIP')}>
+          <Button
+            variant="contained"
+            sx={{ marginTop: '20px' }}
+            onClick={() => alert('WIP')}
+          >
             View Portfolio
           </Button>
         </ContentContainer>
