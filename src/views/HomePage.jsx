@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import Me from '../assets/db_cartoon_no_bg.png';
 import AnimatedLines from '../components/AnimatedLines';
 
@@ -87,6 +88,8 @@ const MeImage = styled('img')(({ theme }) => ({
 }));
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <HomeContainer>
@@ -96,7 +99,7 @@ const HomePage = () => {
           <Button
             variant="contained"
             sx={{ marginTop: '20px' }}
-            onClick={() => alert('WIP')}
+            onClick={() => navigate('/page-1')}
           >
             View Portfolio
           </Button>

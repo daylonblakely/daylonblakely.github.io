@@ -2,6 +2,7 @@ import './index.css';
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ColorModeContext from './context/ColorModeContext';
 import { getDesignTokens } from './theme';
@@ -51,13 +52,29 @@ export default function App() {
     overflow: 'hidden',
   }));
 
+  const pages = [
+    { id: 1, content: 'Page 1', path: '/page-1' },
+    { id: 2, content: 'Page 2', path: '/page-2' },
+    { id: 3, content: 'Page 3', path: '/page-3' },
+  ];
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Background />
-          {/* <HomePage /> */}
-          <FullScreenScroll />
+          <Router>
+            <Routes>
+              {pages.map((page) => (
+                <Route
+                  key={page.id}
+                  path={page.path}
+                  element={<FullScreenScroll pages={pages} />}
+                />
+              ))}
+              <Route path="/" element={<HomePage />} />
+            </Routes>
+          </Router>
           <Footer />
         </AppContainer>
       </ThemeProvider>

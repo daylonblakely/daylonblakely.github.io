@@ -1,11 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
-
-const pages = [
-  { id: 1, content: 'Page 1' },
-  { id: 2, content: 'Page 2' },
-  { id: 3, content: 'Page 3' },
-];
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Page = ({ content }) => (
   <div
@@ -38,17 +33,29 @@ const useDebounce = (func, delay) => {
   return debouncedFunc;
 };
 
-const FullScreenScroll = () => {
+const FullScreenScroll = ({ pages }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    const page = pages.findIndex((p) => p.path === path);
+    if (page !== -1) {
+      setPageIndex(page);
+    }
+  }, [location.pathname]);
 
   const handleScroll = useDebounce((event) => {
     if (isAnimating) return;
 
     if (event.deltaY > 0 && pageIndex < pages.length - 1) {
       setPageIndex(pageIndex + 1);
+      navigate(pages[pageIndex + 1].path);
     } else if (event.deltaY < 0 && pageIndex > 0) {
       setPageIndex(pageIndex - 1);
+      navigate(pages[pageIndex - 1].path);
     }
   }, 100);
 
@@ -61,11 +68,13 @@ const FullScreenScroll = () => {
         pageIndex < pages.length - 1
       ) {
         setPageIndex(pageIndex + 1);
+        navigate(pages[pageIndex + 1].path);
       } else if (event.key === 'ArrowUp' && pageIndex > 0) {
         setPageIndex(pageIndex - 1);
+        navigate(pages[pageIndex - 1].path);
       }
     },
-    [pageIndex, isAnimating]
+    [pageIndex, isAnimating, navigate]
   );
 
   useEffect(() => {
@@ -99,5 +108,16 @@ const FullScreenScroll = () => {
     </motion.div>
   );
 };
+
+// const App = () => (
+//   <Router>
+//     <Routes>
+//       {pages.map((page) => (
+//         <Route key={page.id} path={page.path} element={<FullScreenScroll />} />
+//       ))}
+//       <Route path="/" element={<FullScreenScroll />} />
+//     </Routes>
+//   </Router>
+// );
 
 export default FullScreenScroll;
