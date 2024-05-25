@@ -1,18 +1,37 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { styled } from '@mui/system';
+
+const PageContainer = styled('div')({
+  height: '100vh',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+const PageIndicatorContainer = styled('div')({
+  position: 'fixed',
+  right: '10px',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
+const IndicatorDot = styled('div')(({ theme, isActive }) => ({
+  width: '10px',
+  height: '10px',
+  borderRadius: '50%',
+  margin: '5px 0',
+  backgroundColor: isActive ? theme.palette.primary.main : 'gray',
+}));
 
 const Page = ({ content }) => (
-  <div
-    style={{
-      height: '100vh',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    }}
-  >
+  <PageContainer>
     <h1>{content}</h1>
-  </div>
+  </PageContainer>
 );
 
 const useDebounce = (func, delay) => {
@@ -33,6 +52,14 @@ const useDebounce = (func, delay) => {
   return debouncedFunc;
 };
 
+const PageIndicator = ({ pages, currentPageIndex }) => (
+  <PageIndicatorContainer>
+    {pages.map((_, index) => (
+      <IndicatorDot key={index} isActive={currentPageIndex === index} />
+    ))}
+  </PageIndicatorContainer>
+);
+
 const FullScreenScroll = ({ pages }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -45,7 +72,7 @@ const FullScreenScroll = ({ pages }) => {
     if (page !== -1) {
       setPageIndex(page);
     }
-  }, [location.pathname]);
+  }, [location.pathname, pages]);
 
   const handleScroll = useDebounce((event) => {
     if (isAnimating) return;
@@ -74,7 +101,7 @@ const FullScreenScroll = ({ pages }) => {
         navigate(pages[pageIndex - 1].path);
       }
     },
-    [pageIndex, isAnimating, navigate]
+    [pageIndex, isAnimating, navigate, pages]
   );
 
   useEffect(() => {
@@ -96,28 +123,20 @@ const FullScreenScroll = ({ pages }) => {
   }, [pageIndex]);
 
   return (
-    <motion.div
-      initial={{ y: '100%' }}
-      animate={{ y: 0 }}
-      exit={{ y: '-100%' }}
-      transition={{ duration: 0.5 }}
-      onAnimationComplete={handleAnimationComplete}
-      key={pageIndex}
-    >
-      <Page content={pages[pageIndex].content} />
-    </motion.div>
+    <div>
+      <motion.div
+        initial={{ y: '100%' }}
+        animate={{ y: 0 }}
+        exit={{ y: '-100%' }}
+        transition={{ duration: 0.5 }}
+        onAnimationComplete={handleAnimationComplete}
+        key={pageIndex}
+      >
+        <Page content={pages[pageIndex].content} />
+      </motion.div>
+      <PageIndicator pages={pages} currentPageIndex={pageIndex} />
+    </div>
   );
 };
-
-// const App = () => (
-//   <Router>
-//     <Routes>
-//       {pages.map((page) => (
-//         <Route key={page.id} path={page.path} element={<FullScreenScroll />} />
-//       ))}
-//       <Route path="/" element={<FullScreenScroll />} />
-//     </Routes>
-//   </Router>
-// );
 
 export default FullScreenScroll;
