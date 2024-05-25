@@ -5,18 +5,9 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 import ColorModeContext from './context/ColorModeContext';
 import { getDesignTokens } from './theme';
-// import NavBar from './components/NavBar';
-// import AnimatedBox from './components/AnimatedBox';
-// import FullScreenScroller from './components/FullScreenScroller';
-// import FullScreenSection from './components/FullScreenSection';
 import Background from './components/Background';
 import HomePage from './views/HomePage';
-
-// const sections = [
-//   // { id: 'section1', element: <HomePage /> },
-//   { id: 'section2', element: <AnimatedBox /> },
-//   { id: 'section3', element: <AnimatedBox /> },
-// ];
+import FullScreenScroll from './components/FullScreenScroll';
 
 export default function App() {
   const [mode, setMode] = React.useState('dark');
@@ -64,20 +55,9 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Background />
-          <HomePage />
+          {/* <HomePage /> */}
+          <FullScreenScroll />
         </AppContainer>
-
-        {/* <NavBar sections={sections} /> */}
-
-        {/* <FullScreenScroller>
-          {sections.map((section, i) => {
-            return (
-              <FullScreenSection id={section.id} key={i}>
-                {section.element}
-              </FullScreenSection>
-            );
-          })}
-        </FullScreenScroller> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
