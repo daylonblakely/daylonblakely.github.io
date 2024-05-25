@@ -3,8 +3,6 @@ import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import Me from '../assets/db_cartoon_no_bg.png';
 import AnimatedLines from '../components/AnimatedLines';
-import SocialIcons from '../components/SocialIcons';
-import ModeToggle from '../components/ModeToggle';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,16 +56,6 @@ const ImageContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const FooterContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  position: 'absolute',
-  bottom: '5px',
-  width: '100%',
-  zIndex: 3,
-  gap: '20px',
-}));
-
 const Title = styled('h1')(({ theme }) => ({
   fontSize: '5vw',
   marginBottom: '2px',
@@ -98,14 +86,6 @@ const MeImage = styled('img')(({ theme }) => ({
   maxWidth: '100%', // Ensure the image doesn't exceed the container
 }));
 
-const SocialIconContainer = styled('div')(({ theme }) => ({
-  marginLeft: '20px',
-}));
-
-const ModeToggleContainer = styled('div')(({ theme }) => ({
-  marginRight: '20px',
-}));
-
 const HomePage = () => {
   return (
     <>
@@ -126,14 +106,6 @@ const HomePage = () => {
           <MeImage src={Me} alt="me!" />
         </ImageContainer>
       </HomeContainer>
-      <FooterContainer>
-        <SocialIconContainer>
-          <SocialIcons />
-        </SocialIconContainer>
-        <ModeToggleContainer>
-          <ModeToggle />
-        </ModeToggleContainer>
-      </FooterContainer>
     </>
   );
 };

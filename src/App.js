@@ -8,6 +8,7 @@ import { getDesignTokens } from './theme';
 import Background from './components/Background';
 import HomePage from './views/HomePage';
 import FullScreenScroll from './components/FullScreenScroll';
+import Footer from './components/Footer';
 
 export default function App() {
   const [mode, setMode] = React.useState('dark');
@@ -57,6 +58,7 @@ export default function App() {
           <Background />
           {/* <HomePage /> */}
           <FullScreenScroll />
+          <Footer />
         </AppContainer>
       </ThemeProvider>
     </ColorModeContext.Provider>
