@@ -20,7 +20,9 @@ const PageIndicatorContainer = styled('div')({
   alignItems: 'center',
 });
 
-const IndicatorDot = styled('div')(({ theme, isActive }) => ({
+const IndicatorDot = styled('div', {
+  shouldForwardProp: (prop) => prop !== 'isActive',
+})(({ theme, isActive }) => ({
   width: '10px',
   height: '10px',
   borderRadius: '50%',
@@ -104,15 +106,59 @@ const FullScreenScroll = ({ pages }) => {
     [pageIndex, isAnimating, navigate, pages]
   );
 
+  const handleTouchStart = useCallback((event) => {
+    const touch = event.touches[0];
+    window.startY = touch.clientY;
+  }, []);
+
+  const handleTouchMove = useCallback(
+    (event) => {
+      if (isAnimating || !window.startY) return;
+
+      const touch = event.touches[0];
+      window.diffY = touch.clientY - window.startY;
+    },
+    [isAnimating]
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    if (isAnimating || !window.diffY) return;
+
+    if (window.diffY > 50 && pageIndex > 0) {
+      setPageIndex(pageIndex - 1);
+      navigate(pages[pageIndex - 1].path);
+    } else if (window.diffY < -50 && pageIndex < pages.length - 1) {
+      setPageIndex(pageIndex + 1);
+      navigate(pages[pageIndex + 1].path);
+    }
+
+    window.startY = null;
+    window.diffY = null;
+  }, [pageIndex, isAnimating, navigate, pages]);
+
   useEffect(() => {
     const handleWheel = (event) => handleScroll(event);
     window.addEventListener('wheel', handleWheel);
     window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('touchstart', handleTouchStart);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
     return () => {
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
     };
-  }, [pageIndex, isAnimating, handleScroll, handleKeyDown]);
+  }, [
+    pageIndex,
+    isAnimating,
+    handleScroll,
+    handleKeyDown,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
+  ]);
 
   const handleAnimationComplete = () => {
     setIsAnimating(false);
