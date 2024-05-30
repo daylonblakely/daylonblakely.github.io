@@ -59,21 +59,26 @@ const ImageContainer = styled('div')(({ theme }) => ({
 }));
 
 const Title = styled(motion.h1)(({ theme }) => ({
-  fontSize: '3rem',
+  fontSize: '4rem',
   margin: '0 0 20px 0',
   whiteSpace: 'nowrap',
   color: theme.palette.text.primary,
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '3rem',
+  },
 }));
 
 const IntroText = styled(motion.p)(({ theme }) => ({
-  fontSize: '1.2rem',
+  fontSize: '1.4rem',
   margin: '0 0 20px 0',
   color: theme.palette.text.secondary,
   textAlign: 'left',
-  maxWidth: '600px',
+  maxWidth: '500px',
 
   [theme.breakpoints.down('md')]: {
     textAlign: 'center',
+    fontSize: '1.2rem',
   },
 }));
 

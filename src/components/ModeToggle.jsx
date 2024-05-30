@@ -7,7 +7,11 @@ import ColorModeContext from '../context/ColorModeContext';
 const ModeToggle = () => {
   const colorMode = useContext(ColorModeContext);
   return (
-    <IconButton onClick={colorMode.toggleColorMode} color="secondary">
+    <IconButton
+      onClick={colorMode.toggleColorMode}
+      color="secondary"
+      sx={{ padding: 0 }}
+    >
       {colorMode.mode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
     </IconButton>
   );
