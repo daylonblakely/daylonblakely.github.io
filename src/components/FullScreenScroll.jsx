@@ -5,9 +5,9 @@ import { styled } from '@mui/system';
 
 const PageContainer = styled('div')({
   height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  // display: 'flex',
+  // justifyContent: 'center',
+  // alignItems: 'center',
 });
 
 const PageIndicatorContainer = styled('div')({
@@ -30,11 +30,7 @@ const IndicatorDot = styled('div', {
   backgroundColor: isActive ? theme.palette.primary.main : 'gray',
 }));
 
-const Page = ({ content }) => (
-  <PageContainer>
-    <h1>{content}</h1>
-  </PageContainer>
-);
+const Page = ({ content }) => <PageContainer>{content}</PageContainer>;
 
 const useDebounce = (func, delay) => {
   const timeoutRef = React.useRef(null);

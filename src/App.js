@@ -7,9 +7,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ColorModeContext from './context/ColorModeContext';
 import { getDesignTokens } from './theme';
 import Background from './components/Background';
-import HomePage from './views/HomePage';
 import FullScreenScroll from './components/FullScreenScroll';
 import Footer from './components/Footer';
+import HomePage from './views/HomePage';
+import AboutPage from './views/AboutPage';
 
 export default function App() {
   const [mode, setMode] = React.useState('dark');
@@ -53,7 +54,7 @@ export default function App() {
   }));
 
   const pages = [
-    { id: 1, content: 'Page 1', path: '/page-1' },
+    { id: 1, content: <AboutPage />, path: '/about' },
     { id: 2, content: 'Page 2', path: '/page-2' },
     { id: 3, content: 'Page 3', path: '/page-3' },
   ];

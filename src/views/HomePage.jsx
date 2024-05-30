@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Me from '../assets/db_cartoon_no_bg.png';
 import AnimatedLines from '../components/AnimatedLines';
 
@@ -48,7 +49,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
-    maxWidth: '60%',
+    maxWidth: '50%',
     flex: '0 1 auto',
   },
 
@@ -57,25 +58,22 @@ const ImageContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const Title = styled('h1')(({ theme }) => ({
-  fontSize: '5vw',
-  marginBottom: '2px',
-  marginTop: 0,
+const Title = styled(motion.h1)(({ theme }) => ({
+  fontSize: '3rem',
+  margin: '0 0 20px 0',
   whiteSpace: 'nowrap',
   color: theme.palette.text.primary,
-
-  [theme.breakpoints.down('md')]: {
-    fontSize: '3rem',
-  },
 }));
 
-const IntroText = styled('p')(({ theme }) => ({
-  fontSize: '2.5vw',
-  marginTop: 0,
+const IntroText = styled(motion.p)(({ theme }) => ({
+  fontSize: '1.2rem',
+  margin: '0 0 20px 0',
   color: theme.palette.text.secondary,
+  textAlign: 'left',
+  maxWidth: '600px',
 
   [theme.breakpoints.down('md')]: {
-    fontSize: '1.2rem',
+    textAlign: 'center',
   },
 }));
 
@@ -94,12 +92,27 @@ const HomePage = () => {
     <>
       <HomeContainer>
         <ContentContainer>
-          <Title>Daylon Blakely</Title>
-          <IntroText>Software Engineer</IntroText>
+          <Title
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Hi! I'm Daylon.
+          </Title>
+          <IntroText
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            I am a passionate software developer with experience in building
+            dynamic and responsive web applications. I enjoy working with modern
+            technologies and constantly learning new things to enhance my
+            skills. Welcome to my portfolio!
+          </IntroText>
           <Button
             variant="contained"
-            sx={{ marginTop: '20px' }}
-            onClick={() => navigate('/page-1')}
+            // sx={{ marginTop: '20px' }}
+            onClick={() => navigate('/about')}
           >
             View Portfolio
           </Button>
