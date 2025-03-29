@@ -59,8 +59,8 @@ const ImageContainer = styled('div')(({ theme }) => ({
 }));
 
 const Title = styled(motion.h1)(({ theme }) => ({
-  fontSize: '4rem',
-  margin: '0 0 20px 0',
+  fontSize: '5rem',
+  margin: '0 0 2px 0',
   whiteSpace: 'nowrap',
   color: theme.palette.text.primary,
 
@@ -70,7 +70,7 @@ const Title = styled(motion.h1)(({ theme }) => ({
 }));
 
 const IntroText = styled(motion.p)(({ theme }) => ({
-  fontSize: '1.4rem',
+  fontSize: '2.5rem',
   margin: '0 0 20px 0',
   color: theme.palette.text.secondary,
   textAlign: 'left',
@@ -102,17 +102,14 @@ const HomePage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            Hi! I'm Daylon.
+            Daylon Blakely
           </Title>
           <IntroText
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5 }}
           >
-            I am a passionate software developer with experience in building
-            dynamic and responsive web applications. I enjoy working with modern
-            technologies and constantly learning new things to enhance my
-            skills. Welcome to my portfolio!
+            Software Engineer
           </IntroText>
           <Button
             variant="contained"

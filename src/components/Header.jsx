@@ -1,10 +1,9 @@
 import React from 'react';
 import { styled } from '@mui/system';
-import ModeToggle from '../components/ModeToggle';
 
 const HeaderContainer = styled('div')(({ theme }) => ({
   display: 'flex',
-  justifyContent: 'flex-end',
+  justifyContent: 'space-between',
   position: 'absolute',
   top: '15px',
   width: '100%',
@@ -12,18 +11,8 @@ const HeaderContainer = styled('div')(({ theme }) => ({
   gap: '20px',
 }));
 
-const ModeToggleContainer = styled('div')(({ theme }) => ({
-  marginRight: '15px',
-}));
-
 const Header = () => {
-  return (
-    <HeaderContainer>
-      <ModeToggleContainer>
-        <ModeToggle />
-      </ModeToggleContainer>
-    </HeaderContainer>
-  );
+  return <HeaderContainer></HeaderContainer>;
 };
 
 export default Header;
