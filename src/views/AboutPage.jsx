@@ -1,8 +1,9 @@
 import React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled } from '@mui/material/styles';
 import { motion } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Me from '../assets/me.JPG';
 
 const Container = styled(Box)(({ theme }) => ({
   display: 'flex',
@@ -13,35 +14,46 @@ const Container = styled(Box)(({ theme }) => ({
   position: 'relative',
   zIndex: 1,
   padding: '0 20px',
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+    order: 2,
+  },
 }));
 
 const Content = styled(Box)(({ theme }) => ({
   width: '100%',
   padding: '20px',
-  backgroundColor: theme.palette.background.default,
   [theme.breakpoints.up('md')]: {
     paddingLeft: '10%',
   },
 }));
 
 const Header = styled(motion.h1)(({ theme }) => ({
-  fontSize: '3rem',
+  fontSize: '5rem',
   margin: '0 0 20px 0',
-  color: theme.palette.primary.main,
+  color: theme.palette.text.primary,
+
+  [theme.breakpoints.down('md')]: {
+    fontSize: '3rem',
+  },
 }));
 
 const Summary = styled(motion.p)(({ theme }) => ({
-  fontSize: '1.2rem',
+  fontSize: '2.5rem',
   margin: '0 0 40px 0',
-  color: theme.palette.secondary.main,
+  color: theme.palette.text.secondary,
   textAlign: 'left',
   maxWidth: '800px',
+
+  [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
+    fontSize: '1.2rem',
+  },
 }));
 
 const ImageContainer = styled(motion.div)({
-  width: '200px',
-  height: '200px',
-  borderRadius: '50%',
+  maxWidth: '80%',
+  borderRadius: '10%',
   overflow: 'hidden',
   boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 });
@@ -53,8 +65,6 @@ const Image = styled('img')({
 });
 
 const AboutPage = () => {
-  const theme = useTheme();
-
   return (
     <Container>
       <Grid container spacing={2} alignItems="center">
@@ -65,27 +75,27 @@ const AboutPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1 }}
             >
-              Hello, I'm [Your Name]
+              Hello! I'm Daylon.
             </Header>
             <Summary
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5 }}
             >
-              I am a passionate software developer with experience in building
-              dynamic and responsive web applications. I enjoy working with
-              modern technologies and constantly learning new things to enhance
-              my skills. Welcome to my portfolio!
+              I’m a software engineer with a passion for building, learning, and
+              improving. From designing clean architectures to optimizing
+              performance, I love tackling challenges head-on. Check out my
+              work!
             </Summary>
           </Content>
         </Grid>
         <Grid item xs={12} md={6} display="flex" justifyContent="center">
           <ImageContainer
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 1, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2 }}
           >
-            <Image src="[Your Image URL]" alt="Your Name" />
+            <Image src={Me} alt="Your Name" />
           </ImageContainer>
         </Grid>
       </Grid>
