@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import HomePage from './views/HomePage';
 import AboutPage from './views/AboutPage';
 import BallCatchPage from './views/BallCatchPage';
+import ContactPage from './views/ContactPage';
 
 export default function App() {
   const [mode, setMode] = React.useState('dark');
@@ -58,7 +59,7 @@ export default function App() {
   const pages = [
     { id: 1, content: <AboutPage />, path: '/about' },
     { id: 2, content: <BallCatchPage />, path: '/rlCatch' },
-    { id: 3, content: 'Page 3', path: '/page-3' },
+    { id: 3, content: <ContactPage />, path: '/contact' },
   ];
 
   return (

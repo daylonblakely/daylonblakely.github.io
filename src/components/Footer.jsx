@@ -26,7 +26,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <SocialIconContainer>
-        <SocialIcons />
+        <SocialIcons fontSize={40} />
       </SocialIconContainer>
       <ModeToggleContainer>
         <ModeToggle />
