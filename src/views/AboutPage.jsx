@@ -95,7 +95,7 @@ const AboutPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2 }}
           >
-            <Image src={Me} alt="Your Name" />
+            <Image src={Me} alt="DB" />
           </ImageContainer>
         </Grid>
       </Grid>

@@ -23,8 +23,8 @@ const PageIndicatorContainer = styled('div')({
 const IndicatorDot = styled('div', {
   shouldForwardProp: (prop) => prop !== 'isActive',
 })(({ theme, isActive }) => ({
-  width: '10px',
-  height: '10px',
+  width: '15px',
+  height: '15px',
   borderRadius: '50%',
   margin: '5px 0',
   backgroundColor: isActive ? theme.palette.primary.main : 'gray',
