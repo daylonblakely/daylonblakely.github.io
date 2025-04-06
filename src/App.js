@@ -2,21 +2,18 @@ import './index.css';
 import * as React from 'react';
 import { styled } from '@mui/system';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ColorModeContext from './context/ColorModeContext';
 import { getDesignTokens } from './theme';
-// import NavBar from './components/NavBar';
-// import AnimatedBox from './components/AnimatedBox';
-// import FullScreenScroller from './components/FullScreenScroller';
-// import FullScreenSection from './components/FullScreenSection';
 import Background from './components/Background';
+import FullScreenScroll from './components/FullScreenScroll';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import HomePage from './views/HomePage';
-
-// const sections = [
-//   // { id: 'section1', element: <HomePage /> },
-//   { id: 'section2', element: <AnimatedBox /> },
-//   { id: 'section3', element: <AnimatedBox /> },
-// ];
+import AboutPage from './views/AboutPage';
+import BallCatchPage from './views/BallCatchPage';
+import ContactPage from './views/ContactPage';
 
 export default function App() {
   const [mode, setMode] = React.useState('dark');
@@ -59,25 +56,32 @@ export default function App() {
     overflow: 'hidden',
   }));
 
+  const pages = [
+    { id: 1, content: <AboutPage />, path: '/about' },
+    { id: 2, content: <BallCatchPage />, path: '/rlCatch' },
+    { id: 3, content: <ContactPage />, path: '/contact' },
+  ];
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Background />
-          <HomePage />
+          <Header />
+          <Router>
+            <Routes>
+              {pages.map((page) => (
+                <Route
+                  key={page.id}
+                  path={page.path}
+                  element={<FullScreenScroll pages={pages} />}
+                />
+              ))}
+              <Route path="/" element={<HomePage />} />
+            </Routes>
+          </Router>
+          <Footer />
         </AppContainer>
-
-        {/* <NavBar sections={sections} /> */}
-
-        {/* <FullScreenScroller>
-          {sections.map((section, i) => {
-            return (
-              <FullScreenSection id={section.id} key={i}>
-                {section.element}
-              </FullScreenSection>
-            );
-          })}
-        </FullScreenScroller> */}
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

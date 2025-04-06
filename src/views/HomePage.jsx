@@ -1,10 +1,10 @@
 import React from 'react';
 import { styled } from '@mui/system';
 import { Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import Me from '../assets/db_cartoon_no_bg.png';
 import AnimatedLines from '../components/AnimatedLines';
-import SocialIcons from '../components/SocialIcons';
-import ModeToggle from '../components/ModeToggle';
 
 const HomeContainer = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -49,7 +49,7 @@ const ImageContainer = styled('div')(({ theme }) => ({
 
   [theme.breakpoints.down('md')]: {
     minWidth: '300px',
-    maxWidth: '60%',
+    maxWidth: '50%',
     flex: '0 1 auto',
   },
 
@@ -58,20 +58,9 @@ const ImageContainer = styled('div')(({ theme }) => ({
   },
 }));
 
-const FooterContainer = styled('div')(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  position: 'absolute',
-  bottom: '5px',
-  width: '100%',
-  zIndex: 3,
-  gap: '20px',
-}));
-
-const Title = styled('h1')(({ theme }) => ({
-  fontSize: '5vw',
-  marginBottom: '2px',
-  marginTop: 0,
+const Title = styled(motion.h1)(({ theme }) => ({
+  fontSize: '5rem',
+  margin: '0 0 2px 0',
   whiteSpace: 'nowrap',
   color: theme.palette.text.primary,
 
@@ -80,12 +69,15 @@ const Title = styled('h1')(({ theme }) => ({
   },
 }));
 
-const IntroText = styled('p')(({ theme }) => ({
-  fontSize: '2.5vw',
-  marginTop: 0,
+const IntroText = styled(motion.p)(({ theme }) => ({
+  fontSize: '2.5rem',
+  margin: '0 0 20px 0',
   color: theme.palette.text.secondary,
+  textAlign: 'left',
+  maxWidth: '500px',
 
   [theme.breakpoints.down('md')]: {
+    textAlign: 'center',
     fontSize: '1.2rem',
   },
 }));
@@ -98,25 +90,31 @@ const MeImage = styled('img')(({ theme }) => ({
   maxWidth: '100%', // Ensure the image doesn't exceed the container
 }));
 
-const SocialIconContainer = styled('div')(({ theme }) => ({
-  marginLeft: '20px',
-}));
-
-const ModeToggleContainer = styled('div')(({ theme }) => ({
-  marginRight: '20px',
-}));
-
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <HomeContainer>
         <ContentContainer>
-          <Title>Daylon Blakely</Title>
-          <IntroText>Software Engineer</IntroText>
+          <Title
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            Daylon Blakely
+          </Title>
+          <IntroText
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            Software Engineer
+          </IntroText>
           <Button
             variant="contained"
-            sx={{ marginTop: '20px' }}
-            onClick={() => alert('WIP')}
+            // sx={{ marginTop: '20px' }}
+            onClick={() => navigate('/about')}
           >
             View Portfolio
           </Button>
@@ -126,14 +124,6 @@ const HomePage = () => {
           <MeImage src={Me} alt="me!" />
         </ImageContainer>
       </HomeContainer>
-      <FooterContainer>
-        <SocialIconContainer>
-          <SocialIcons />
-        </SocialIconContainer>
-        <ModeToggleContainer>
-          <ModeToggle />
-        </ModeToggleContainer>
-      </FooterContainer>
     </>
   );
 };
