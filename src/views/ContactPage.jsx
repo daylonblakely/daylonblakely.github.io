@@ -11,8 +11,6 @@ const Container = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   height: '100vh',
   backgroundColor: 'transparent',
-  //   position: 'relative',
-  //   zIndex: 3,
   padding: '0 20px',
   textAlign: 'center',
 }));

@@ -3,7 +3,6 @@ import { styled } from '@mui/material/styles';
 import { motion, useInView } from 'framer-motion';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Grid from '@mui/material/Grid';
 import Hoops from '../assets/RL_Hoops_Demo.mp4';
 
 const Container = styled(Box)(({ theme }) => ({
@@ -59,7 +58,6 @@ const GitHubButton = styled(Button)(({ theme }) => ({
   fontSize: '1rem',
 
   [theme.breakpoints.down('sm')]: {
-    // marginTop: '10px',
     marginBottom: '40px', // brings it up slightly from the bottom
   },
 }));
