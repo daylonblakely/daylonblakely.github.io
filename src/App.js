@@ -8,7 +8,6 @@ import ColorModeContext from './context/ColorModeContext';
 import { getDesignTokens } from './theme';
 import Background from './components/Background';
 import FullScreenScroll from './components/FullScreenScroll';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePage from './views/HomePage';
 import AboutPage from './views/AboutPage';
@@ -67,7 +66,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <AppContainer>
           <Background />
-          <Header />
+          <Footer />
           <Router>
             <Routes>
               {pages.map((page) => (
@@ -80,7 +79,6 @@ export default function App() {
               <Route path="/" element={<HomePage />} />
             </Routes>
           </Router>
-          <Footer />
         </AppContainer>
       </ThemeProvider>
     </ColorModeContext.Provider>

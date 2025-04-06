@@ -2,12 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { styled } from '@mui/system';
+import Header from './Header';
 
 const PageContainer = styled('div')({
   height: '100vh',
-  // display: 'flex',
-  // justifyContent: 'center',
-  // alignItems: 'center',
 });
 
 const PageIndicatorContainer = styled('div')({
@@ -166,6 +164,7 @@ const FullScreenScroll = ({ pages }) => {
 
   return (
     <div>
+      <Header />
       <motion.div
         initial={{ y: '100%' }}
         animate={{ y: 0 }}

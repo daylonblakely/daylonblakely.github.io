@@ -23,7 +23,6 @@ const DiagonalShadowOverlay = styled(Box)(({ theme }) => ({
   position: 'absolute',
   width: '100%',
   height: '100%',
-  zIndex: 2,
   background:
     theme.palette.mode === 'light'
       ? 'linear-gradient(to bottom left, #fff0, #fff0 70%, rgba(0, 0, 0, 0.2))'

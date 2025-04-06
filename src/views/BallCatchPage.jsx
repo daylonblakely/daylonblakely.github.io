@@ -56,6 +56,7 @@ const GitHubButton = styled(Button)(({ theme }) => ({
   alignSelf: 'center',
   marginTop: '20px',
   fontSize: '1rem',
+  zIndex: 4,
 
   [theme.breakpoints.down('sm')]: {
     marginBottom: '40px', // brings it up slightly from the bottom

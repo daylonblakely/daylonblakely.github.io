@@ -9,7 +9,6 @@ const FooterContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
   bottom: '5px',
   width: '100%',
-  zIndex: 3,
   gap: '20px',
 }));
 

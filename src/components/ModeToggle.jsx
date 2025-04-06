@@ -10,7 +10,7 @@ const ModeToggle = () => {
     <IconButton
       onClick={colorMode.toggleColorMode}
       color="secondary"
-      sx={{ padding: 0 }}
+      sx={{ padding: 0, zIndex: 999 }}
     >
       {colorMode.mode === 'dark' ? <DarkModeIcon /> : <LightModeIcon />}
     </IconButton>

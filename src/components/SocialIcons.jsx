@@ -2,7 +2,6 @@ import React from 'react';
 import { styled } from '@mui/system';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
-// import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const StyledSocialIcons = styled('div')({
@@ -13,6 +12,7 @@ const StyledSocialIcons = styled('div')({
 });
 
 const StyledLink = styled('a')({
+  zIndex: 999,
   textDecoration: 'none',
   color: 'inherit',
   '&:hover': {
@@ -36,9 +36,6 @@ const SocialIcons = ({ fontSize }) => {
       <StyledLink href="https://github.com/daylonblakely" target="_blank">
         <GitHubIcon color="primary" fontSize="inherit" sx={{ fontSize }} />
       </StyledLink>
-      {/* <StyledLink href="https://www.instagram.com/day96day/" target="_blank">
-        <InstagramIcon color="primary" fontSize="large" />
-      </StyledLink> */}
     </StyledSocialIcons>
   );
 };
